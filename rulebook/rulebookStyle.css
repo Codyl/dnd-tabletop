@@ -1,0 +1,51 @@
+body {
+    
+
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-right:100px;
+}
+#FAQ, #DM-tips, #P-tips, #house-rules {
+    margin-left: 40px;
+    background-color: coral;
+}
+#basics {
+    grid-column: 1/3;
+    grid-row: 1;
+    margin-bottom: 10px;
+}
+#FAQ {
+
+}
+
+.infoButton {
+    cursor: pointer;
+    background-color: lightcoral;
+    border-radius: 5px;
+    padding: 45px 0;
+    text-align: center;
+    font-size: x-large;
+    box-sizing: border-box;
+}
+.infoButton:active {
+    background-color: black;
+}
+.subCategory {
+    background-color: lightcoral;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    padding: 5px 0;
+}
+.hide {
+    display: none;
+}
+#search {
+    width: 100%;
+}
