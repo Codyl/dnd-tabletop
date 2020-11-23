@@ -1,4 +1,4 @@
-import rulebookController from './rulebookController.js';
+import rulebookController from './rulebook/rulebookController.js';
 
 const rulebook = new rulebookController();
 // console.log(window.location.pathname);
