@@ -2,8 +2,18 @@ export default class RulebookView {
     constructor(){
         this.allButtons = document.querySelectorAll('.infoButton');
     }
+    createDescElem(topic,parent) {
+        let elem = document.createElement('div');
+        elem.classList.add('hide','ruleInfo');
+         elem.id = topic.index+"-Desc";
+        parent.addEventListener('click', function() {
+            elem.classList.toggle('hide');
+        });
+        return elem;
+    }
     renderTopic(topic, parent) {
         let elem = document.createElement('div');
+
         elem.textContent = topic.name;
         elem.classList.add('subCategory');
         elem.id = topic.index;
@@ -13,7 +23,8 @@ export default class RulebookView {
         //console.log(result.url);
     }
     renderRuleDesc(topic, desc, parent) {
-        let elem = document.createElement('div');
+        let elem =this.createDescElem(topic,parent);
+
         let descSplit = desc.split('\n');
         for(let line in descSplit) {
             let lineElem = document.createElement('div');
@@ -32,36 +43,29 @@ export default class RulebookView {
             }
             elem.appendChild(lineElem);
         }
-        // elem.innerHTML = `<p>${newDesc}</p>`;
-        elem.classList.add('hide');
-         elem.id = topic.index+"-Desc";
-        // elem.setAttribute('data-api','/'+elem.id.toLowerCase());
-        parent.addEventListener('click', function() {
-            elem.classList.toggle('hide');
-        });
         parent.after(elem);
     }
     renderSpellDesc(topic, desc, parent) {
-        let elem = document.createElement('div');
+        let elem = this.createDescElem(topic,parent);
+
         elem.innerHTML = `<p>${desc}</p>`;
-        elem.classList.add('hide');
-         elem.id = topic.index+"-Desc";
-        // elem.setAttribute('data-api','/'+elem.id.toLowerCase());
-        parent.addEventListener('click', function() {
-            elem.classList.toggle('hide');
-        });
         parent.after(elem);
     }
     renderTitle() {
         let searchName = window.location.search.replace('?find=','');
         searchName = searchName.replace('%2F','/');
+        let titleName;
+        //Get the title from the search
+        let title = searchName.replace('../myJson%2F','').replace('.json','').replace('_',' ').split('/');
+        if(title[0] != 'equipment-categories' && title) titleName = title[0];
+        else titleName = title[1];
         let titleElem = document.getElementById('title');
-        titleElem.innerText = searchName;
+        titleElem.innerText = titleName;
         titleElem.id = searchName;
     }
     renderMonsterDesc(topic, desc, parent) {
-        const descElem = document.createElement('div');
-        descElem.id = desc.index+"-Desc";
+        const descElem = this.createDescElem(topic,parent);
+
         const hitPointElem = document.createElement('div');
         const armorClassElem = document.createElement('div');
         const intElem = document.createElement('div');
@@ -76,36 +80,27 @@ export default class RulebookView {
         conElem.innerText = "Con: " + desc.constitution;
         dexElem.innerText = "Dex: " + desc.dexterity;
         wisElem.innerText = "Wis: " + desc.wisdom;
+
         parent.after(descElem);
-        descElem.classList.add('hide');
-        parent.addEventListener('click', function() {
-            descElem.classList.toggle('hide');
-        });
         descElem.append(hitPointElem, armorClassElem, intElem, strElem, conElem, dexElem, wisElem);
         
         // console.log(desc)
     }
     renderWeaponDesc(topic, desc, parent) {
         // console.log(desc.cost.quantity);
-        const descElem = document.createElement('div');
+        const descElem = this.createDescElem(topic,parent);
         const rangeElem = document.createElement('div');
         const diceElem = document.createElement('div');
         const costElem = document.createElement('div');
         rangeElem.innerText = "Type: "+desc.category_range;
-        if(desc.damage != undefined)
-        diceElem.innerText = "Dice: "+desc.damage.damage_dice;
-        if(desc.cost != undefined)
-        costElem.innerText = `Cost: ${desc.cost.quantity} ${desc.cost.unit}`;
+        if(desc.damage != undefined) diceElem.innerText = "Dice: "+desc.damage.damage_dice;
+        if(desc.cost != undefined) costElem.innerText = `Cost: ${desc.cost.quantity} ${desc.cost.unit}`;
+
         parent.after(descElem);
-        descElem.classList.add('hide');
-        parent.addEventListener('click', function() {
-            descElem.classList.toggle('hide');
-        });
         descElem.append(rangeElem, diceElem, costElem);
     }
     renderEquipmentDesc(topic, desc, parent) {
-        console.log(desc);
-        const descElem = document.createElement('div');
+        const descElem = this.createDescElem(topic,parent);
         const costElem = document.createElement('div');
         if(desc.cost != undefined)
         costElem.innerText = `Cost: ${desc.cost.quantity} ${desc.cost.unit}`;
@@ -123,30 +118,22 @@ export default class RulebookView {
                 }
             }
         }
+
         parent.after(descElem);
-        descElem.classList.add('hide');
-        parent.addEventListener('click', function() {
-            descElem.classList.toggle('hide');
-        });
         descElem.append(costElem);
     }
     renderRaceDesc(topic, desc, parent) {
-        console.log(desc);
-        const descElem = document.createElement('div');
+        const descElem = this.createDescElem(topic,parent);
         const ageElem = document.createElement('div');
         const alignElem = document.createElement('div');
         ageElem.innerText = "Age: " + desc.age;
         alignElem.innerText = "Alignment: " + desc.alignment;
+
         parent.after(descElem);
-        descElem.classList.add('hide');
-        parent.addEventListener('click', function() {
-            descElem.classList.toggle('hide');
-        });
         descElem.append(ageElem, alignElem);
     }
     renderClassDesc(topic, desc, parent) {
-        console.log(desc);
-        const descElem = document.createElement('div');
+        const descElem = this.createDescElem(topic,parent);
         const proficienciesElem = document.createElement('div');
         if(desc.proficiencies != undefined){
             for(let i = 0; i < desc.proficiencies.length; i++) {
@@ -161,11 +148,8 @@ export default class RulebookView {
                 }
             }
         }
+        
         parent.after(descElem);
-        descElem.classList.add('hide');
-        parent.addEventListener('click', function() {
-            descElem.classList.toggle('hide');
-        });
         descElem.append(proficienciesElem);
     }
 };

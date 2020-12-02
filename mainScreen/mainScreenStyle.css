@@ -2,7 +2,7 @@
     color: red;
 }
 #mainScreen {
-    background-image: url("./img/map1.jpg");
+    background-image: url("../img/map1.jpg");
     width: 100%;
     height: 100%;
     background-repeat: repeat;
@@ -19,8 +19,26 @@ html, body {
 }
 #grid {
     display: grid;
-    grid-template-columns: repeat(24, 1fr);
-    gap: 1px;
-    grid-auto-rows: minmax(47px, auto);
-    background-color: red;
+    grid-template-columns: repeat(2, calc(100vw / 21.5));
+    gap: 0px;
+    grid-template-rows: repeat(2, calc(100vh / 17));
+    
+}
+.playerImg {
+    width: 40px;
+    border-radius: 100%;
+    border: 3px solid lightgreen;
+}
+#interactive, #players {
+    position: absolute;
+    top: 0px;
+}
+.tile {
+    background-color: rgba(255, 0, 0, 0.25);
+    border-color: black; border-width: 1px; border-style: solid;
+}
+#ruleBookButton {
+    background-color: aliceblue;
+    border: 1px sold black;
+    border-radius: 10%;
 }

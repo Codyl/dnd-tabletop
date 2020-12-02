@@ -1,7 +1,3 @@
-body {
-    
-
-}
 .wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -20,8 +16,8 @@ body {
     grid-row: 1;
     margin-bottom: 10px;
 }
-#FAQ {
-
+.ruleInfo {
+    margin-left: 40px;
 }
 
 .infoButton {
@@ -49,3 +45,35 @@ body {
 #search {
     width: 100%;
 }
+@media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0px;
+        grid-auto-rows: minmax(10px, auto);
+        padding-top: 0px;
+        padding-left: 0px;
+        padding-right:0px;
+    }
+    #basics {
+        grid-column: 1/3;
+        grid-row: 1;
+        margin-bottom: 10px;
+    }
+    #FAQ, #DM-tips, #P-tips, #house-rules {
+        background-color: coral;
+        margin-left: 0px;
+    }
+    .infoButton {
+        cursor: pointer;
+        background-color: lightcoral;
+        border-radius: 5px;
+        padding: 0px 0px;
+        text-align: center;
+        font-size: x-large;
+        box-sizing: border-box;
+    }
+  }
