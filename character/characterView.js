@@ -4,7 +4,7 @@ export default class characterView {
     }
     getFormData() {
         return {
-            name: document.getElementById('name').value,
+            name: document.getElementById('name').innerText,
             level: document.getElementById('level').value,
             className: document.getElementById('class').value,
             race: document.getElementById('race').value,
@@ -21,9 +21,9 @@ export default class characterView {
             background: document.getElementById('background').value
         };
     }
-    setFormData(){
+    setFormDataValue(){
         const data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
-        // console.log(data);
+        console.log(data);
         document.getElementById('name').value = data.characterName;
         document.getElementById('level').value = data.level;
         document.getElementById('class').value = data.class;
@@ -38,6 +38,24 @@ export default class characterView {
         document.getElementById('int').value = data.int;
         document.getElementById('wis').value = data.wis;
         document.getElementById('cha').value = data.cha;
+    }
+    setFormDataText(){
+        console.log(window.location.search.replace('?',''));
+        const data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
+        document.getElementById('name').innerText = data.characterName;
+        document.getElementById('level').innerText = data.level;
+        document.getElementById('class').innerText = data.class;
+        document.getElementById('race').innerText = data.race;
+        document.getElementById('alignment').innerText = data.alignment;
+        document.getElementById('exp').innerText = data.exp;
+        document.getElementById('armor').innerText = data.armor;
+        document.getElementById('speed').innerText = data.speed;
+        document.getElementById('str').innerText = data.str;
+        document.getElementById('dex').innerText = data.dex;
+        document.getElementById('con').innerText = data.con;
+        document.getElementById('int').innerText = data.int;
+        document.getElementById('wis').innerText = data.wis;
+        document.getElementById('cha').innerText = data.cha;
     }
     //Used in characterSelect
     showCharacter(characterName) {
