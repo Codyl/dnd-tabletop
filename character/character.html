@@ -4,32 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DnD Character</title>
-    <!-- <link rel="stylesheet" href="characterStyle.css"> -->
+    <link rel="stylesheet" href="characterStyle.css">
 </head>
 <body>
-    <h1>Character Sheet<button onclick="window.location.href='./characterEdit.html'">Edit</button></h1>
+    <a href="../mainScreen/mainScreen.html">Back to map screen</a>
+    <h1>Character Sheet<button onclick="window.location.href='./characterEdit.html'+window.location.search">Edit</button></h1>
     <div class='image left'>
         <img src="" alt="">
     </div>
     <div class='right top'>
         <h2>Character</h2>
-        <span>Name: <span id='name'></span></span>
-        <span>Level: <span id='level'></span></span>
-        <span>Class: <span id='class'></span></span>
-        <span>Race: <span id='race'></span></span>
-        <span>Alignment: <span id='align'></span></span>
-        <span>Experience: <span id='exp'></span></span>
-        <span>Armor: <span id='arm'></span></span>
-        <span>Speed: <span id='speed'></span></span>
+        <div>Name: <span id='name'></span></div>
+        <div>Level: <span id='level'></span></div>
+        <div>Class: <span id='class'></span></div>
+        <div>Race: <span id='race'></span></div>
+        <div>Alignment: <span id='alignment'></span></div>
+        <div>Experience: <span id='exp'></span></div>
+        <div>Armor: <span id='armor'></span></div>
+        <div>Speed: <span id='speed'></span></div>
     </div>
     <div class='right top'>
         <h2>Skills</h2>
-        <span>Str: <span id='str'></span></span>
-        <span>Dex: <span id='dex'></span></span>
-        <span>Con: <span id='con'></span></span>
-        <span>Int: <span id='int'></span></span>
-        <span>Wis: <span id='wis'></span></span>
-        <span>Cha: <span id='cha'></span></span>
+        <div>Str: <span id='str'></span></div>
+        <div>Dex: <span id='dex'></span></div>
+        <div>Con: <span id='con'></span></div>
+        <div>Int: <span id='int'></span></div>
+        <div>Wis: <span id='wis'></span></div>
+        <div>Cha: <span id='cha'></span></div>
     </div>
     <div class='left section'>
         <h2>Attacks</h2>
@@ -39,5 +40,6 @@
         <h2>Equipment</h2>
         <ul></ul>
     </div>
+    <script type='module' src="./character.js"></script>
 </body>
 </html>

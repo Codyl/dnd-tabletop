@@ -1,6 +1,6 @@
 div {
     border: 1px solid black;
-    margin: 13px 0;
+    margin: 5px 0;
     float: none;
 }
 div.left {
@@ -10,18 +10,37 @@ div.right {
     float: right;
 }
 div.image {
-    height: 235px;
-    width: 200px;
+    height: 610px;
+    width: 45%;
 }
 .top {
-    min-height: 100px;
-    width: 400px;
+    min-height: 300px;
+    width: 45%;
 }
 .section {
-width: 10%;
+width: 45%;
 }
 .characterSelectable {
     width: 45%;
     height: 50px;
     border: 4px solid blue;
+}
+.skill {
+    background-image: url('../img/Screenshot_33.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 60px;
+    float: left;
+    margin: 5px;
+    text-align: center;
+}
+input, select {
+    width: 100px;
+}
+.skill input {
+    width: 30px;
+}
+section {
+    margin-bottom: 5px;
 }

@@ -6,5 +6,4 @@ export default class mainScreenController {
         this.mainScreenView = new mainScreenView();
         this.mainScreenModel = new mainScreenModel();
     }
-
 }

@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DnD Character</title>
-    <!-- <link rel="stylesheet" href="characterStyle.css"> -->
+    <link rel="stylesheet" href="characterStyle.css">
 </head>
 <body>
-    <h1>Character Sheet<button>Save</button></h1>
-    <form action="">
+    <h1>Character Sheet
+        <button id='saveCharacter'>Save</button>
+    </h1>
+    <form action="../mainScreen/mainScreen.html" method="POST">
         <div class='image left'>
-            Character Image<img src="" alt="">
-            <input type="file" name="" id="" accept="image/*">
+            <img src="" alt="" id='characterImage'>
+            <input type="file" name="characterImageSelect" id="characterImageSelect" accept="image/*">
         </div>
         <div class='right top'>
             <h2>Character</h2>
-            <span>Name: <input type="text" name="" id=""><span id='name'></span></span>
-            <span>Level: 
-                <input type="number" name="" id="" value='1'>
+            <section>Name: <input type="text" name="name" id="name" value='test'></section>
+            <section>Level: 
+                <input type="number" name="level" id="level" value='4'>
 
-            </span></span>
-            <span>Class: 
-                <select name="" id="">
+            </section>
+            <section>Class: 
+                <select name="class" id="class">
                     <option value=""></option>
                     <option value="Barbarian">Barbarian</option>
                     <option value="Bard">Bard</option>
@@ -36,12 +38,9 @@
                     <option value="Warlock">Warlock</option>
                     <option value="Wizard">Wizard</option>
                 </select>
-                <span id='class'>
-
-                </span>
-            </span>
-            <span>Race: 
-                <select name="" id="">
+            </section>
+            <section>Race: 
+                <select name="" id="race">
                     <option value=""></option>
                     <option value="Dragonborn">Dragonborn</option>
                     <option value="Dwarf">Dwarf</option>
@@ -53,9 +52,8 @@
                     <option value="Human">Human</option>
                     <option value="Tiefling">Tiefling</option>
                 </select>
-                <span id='race'></span></span>
-            <span>Alignment: 
-                <select name="" id="">
+            <section>Alignment: 
+                <select name="alignment" id="alignment">
                     <option value=""></option>
                     <option value="chaotic good">chaotic good</option>
                     <option value="neutral good">neutral good</option>
@@ -67,19 +65,18 @@
                     <option value="neutral evil">neutral evil</option>
                     <option value="lawful evil">lawful evil</option>
                 </select>
-                <span id='align'></span></span>
-            <span>Experience: <input type="number"><span id='exp'></span></span>
-            <span>Armor: <input type="number" name="" id=""><span id='arm'></span></span>
-            <span>Speed: <input type="number"><span id='speed'></span></span>
+            <section>Experience: <input type="number" id='exp'></section>
+            <section>Armor: <input type="number" name="armor" id="armor"></section>
+            <section>Speed: <input type="number" id='speed'></section>
         </div>
         <div class='right top'>
             <h2>Skills</h2>
-            <span>Str: <span id='str'></span><input type="number" name="" id=""> </span>
-            <span>Dex: <span id='dex'></span><input type="number" name="" id=""></span>
-            <span>Con: <span id='con'></span><input type="number" name="" id=""></span>
-            <span>Int: <span id='int'></span><input type="number" name="" id=""></span>
-            <span>Wis: <span id='wis'></span><input type="number" name="" id=""></span>
-            <span>Cha: <span id='cha'></span><input type="number" name="" id=""></span>
+            <div class='skill' id='strDiv'>Str: <input type="number" name="" id="str"> </div>
+            <div class='skill' id='dexDiv'>Dex: <input type="number" name="" id="dex"></div>
+            <div class='skill' id='conDiv'>Con: <input type="number" name="" id="con"></div>
+            <div class='skill' id='intDiv'>Int: <input type="number" name="" id="int"></div>
+            <div class='skill' id='wisDiv'>Wis: <input type="number" name="" id="wis"></div>
+            <div class='skill' id='chaDiv'>Cha: <input type="number" name="" id="cha"></div>
         </div>
         <div class='left section'>
             <h2>Attacks</h2>
@@ -89,6 +86,10 @@
             <h2>Equipment</h2>
             <ul></ul>
         </div>
+        <div>
+            Background story: <textarea name="" id="background" cols="30" rows="10"></textarea>
+        </div>
     </form>
+    <script type='module' src="./editor.js"></script>
 </body>
 </html>
