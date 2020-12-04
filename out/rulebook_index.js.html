@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: rulebook/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,49 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: rulebook/index.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import rulebookController from './rulebookController.js';
+/**
+ * @summary Uses the MVC rule book to display the data.
+ */
+const rulebook = new rulebookController();
+let path = window.location.pathname;
+if(path === '/rulebook/ruleView.html')
+{
+    rulebook.rulebookView.renderTitle();
+    rulebook.setRuleLinks();
+    document.getElementById('search').addEventListener('input',function() {
+        // console.log(document.getElementById('search').value);
+        let content = document.getElementsByClassName('subCategory');
+        for (let i = 0; i &lt; content.length; i++) {
+            if(!String(content[i].innerText).toLowerCase().startsWith(String(document.getElementById('search').value)))
+            {content[i].classList.add('hide');
+        }
+        else {
+            content[i].classList.remove('hide');
+        }
+    }
+    if(document.getElementById('search').value == '') 
+    for (let i = 0; i &lt; content.length; i++) {
+        content[i].classList.remove('hide');
+        content[i].nextElementSibling.classList.add('hide');
+    }
+});
+}
+else if(path === '/rulebook/rulebook.html')
+{
+    rulebook.setRulebookLinks();
+}</code></pre>
+        </article>
+    </section>
 
 
 

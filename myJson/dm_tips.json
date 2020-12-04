@@ -1,39 +1,44 @@
 {
     "results":[
     {
-        "name": "building my character",
+        "name": "Know your inner DM",
         "index":"building-my-character",
         "desc": "Make a character memorable by considering your character’s childhood, education, employment, love life, as well as any key defining moments, will help you flesh out a truly 3d personality. This in turn brings flavour to the game, gives the DM plenty of adventure hooks to work with, and makes it easier for other players to understand and interact with your character."
     },
     {
-        "name":"getting stronger",
+        "name":"Know the players",
         "index":"getting-stronger",
         "desc":"To get stronger you need to work with your DM to understand how they give out experience. Is it only by battles? If so you may want to ask to jump through a bunch of battles."
     },
     {
-        "name":"Telling your story",
+        "name":"Know your game",
         "index":"telling-your-story",
         "desc":"So you made a awesome character. Great! Try to think of ways to fit your character into the plot or ask the DM if you can have a section of the session that will explore your characters background. Do not take over the story though as that can agrivate other players. Get to know their characters too! The better you know your own and your parties characters, the more you will be able to make it your story too!"
     },
     {
-        "name":"Following the plot",
+        "name":"Leave no rules ambiguous",
         "index":"following-the-plot",
         "desc":""
     },
     {
-        "name":"Getting the right items",
+        "name":"Set boundaries",
         "index":"getting-the-right-items",
         "desc":""
     },
     {
-        "name":"Getting the team to work together",
+        "name":"Session Zero",
         "index":"getting-the-team-to-work-together",
         "desc":""
     },
     {
-        "name":"Feeling bored",
+        "name":"Give Your Scenes Flavour",
         "index":"feeling-bored",
-        "desc":"If you feel something is wrong with the way things are going or do not want to keep playing let your DM know and will try to fix the issue."
+        "desc":"A well placed voice accent, dramatic reveal, or impromptu description of a scene will help to immerse your players in a way that raw dice rolls never will. You don't have to be an actor either; there are loads of ways to do it. Get some background music, use different tokens, make physical letters or objects as handouts, and encourage your players to get certain mechanical boons for roleplaying. "
+    },
+    {
+        "name":"Have A Plan, And Be Prepared For It To Derail",
+        "index":"feeling-bored",
+        "desc":"A well placed voice accent, dramatic reveal, or impromptu description of a scene will help to immerse your players in a way that raw dice rolls never will. You don't have to be an actor either; there are loads of ways to do it. Get some background music, use different tokens, make physical letters or objects as handouts, and encourage your players to get certain mechanical boons for roleplaying. "
     }
     ]
 }

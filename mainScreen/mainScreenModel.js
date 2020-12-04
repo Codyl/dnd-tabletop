@@ -22,4 +22,17 @@ export default class MainScreenModel {
         let coordinate;
         return coordinate;
     }
+    getImageSize(imageUrl) {
+        let dimension, image;
+
+        image = new Image();
+        image.src = imageUrl;
+        image.onload = function() {
+            dimension = {
+                width: image.naturalWidth,
+                height: image.naturalHeight
+            };
+        };
+        return dimension;
+    }
 }
