@@ -1,7 +1,8 @@
 import rulebookController from './rulebookController.js';
-
+/**
+ * @summary Uses the MVC rule book to display the data.
+ */
 const rulebook = new rulebookController();
-// console.log(window.location.pathname);
 let path = window.location.pathname;
 if(path === '/rulebook/ruleView.html')
 {

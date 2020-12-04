@@ -44,3 +44,6 @@ input, select {
 section {
     margin-bottom: 5px;
 }
+td, th {
+    border: 1px solid black;
+}

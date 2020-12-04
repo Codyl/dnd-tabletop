@@ -1,8 +1,14 @@
-
+/**
+ * Utility for fetching data from dnd5eapi.co
+ */
 export default class RulebookModel{
   constructor(){
     this.baseUrl = "https://www.dnd5eapi.co/api/";
   }
+  /**
+   * @function getList
+   * @param {string} url The api url string to be parsed for data 
+   */
   getList(url) {
       // console.log(url);
       return fetch(url)

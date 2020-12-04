@@ -1,7 +1,8 @@
 import characterController from './characterController.js';
 const myCharacterController = new characterController();
-
-// console.log(localStorage.getItem(localStorage.getItem('currentCharacter')));
+/**
+ * Determines if it should pull from the url or the selected character.
+ */
 if(window.location.search)
 myCharacterController.characterView.setFormDataText();
 else {

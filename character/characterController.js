@@ -1,6 +1,9 @@
 import characterView from './characterView.js';
 import characterModel from './characterModel.js';
-
+/**
+ * @class characterController
+ * @summary Process input for character pages
+ */
 export default class characterController {
     constructor() {
         this.characterView = new characterView();
@@ -13,12 +16,11 @@ export default class characterController {
     }
     uploadImage() {
         const inputElement = document.getElementById("characterImage");
-        inputElement.addEventListener("change", handleFiles, false);
-        function handleFiles() {
+        inputElement.addEventListener("change", () => {
             console.log(inputElement);
-            const fileList = this.files; /* now you can work with the file list */
+            const fileList = this.files; 
             console.log(fileList);
             this.characterView.showImage("characterImage",fileList[i]);
-        }
+        });
     }
 }

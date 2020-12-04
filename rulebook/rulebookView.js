@@ -1,7 +1,15 @@
+/**
+ * @class RulebookView renders the elements for dynamic data.
+ */
 export default class RulebookView {
     constructor(){
         this.allButtons = document.querySelectorAll('.infoButton');
     }
+    /**
+     * 
+     * @param {object} topic 
+     * @param {element} parent 
+     */
     createDescElem(topic,parent) {
         let elem = document.createElement('div');
         elem.classList.add('hide','ruleInfo');
@@ -11,6 +19,11 @@ export default class RulebookView {
         });
         return elem;
     }
+    /**
+     * 
+     * @param {object} topic 
+     * @param {element} parent 
+     */
     renderTopic(topic, parent) {
         let elem = document.createElement('div');
 
@@ -20,8 +33,13 @@ export default class RulebookView {
         elem.setAttribute('data-api','/'+elem.id.toLowerCase());
         parent.appendChild(elem);
         return true;
-        //console.log(result.url);
     }
+    /**
+     * 
+     * @param {object} topic 
+     * @param {string} desc full data from query describing a topic 
+     * @param {element} parent The element for the topic to contain the description
+     */
     renderRuleDesc(topic, desc, parent) {
         let elem =this.createDescElem(topic,parent);
 
@@ -45,12 +63,22 @@ export default class RulebookView {
         }
         parent.after(elem);
     }
+    /**
+     * 
+     * @param {object} topic 
+     * @param {string} desc full data from query describing a topic 
+     * @param {element} parent The element for the topic to contain the description
+     */
     renderSpellDesc(topic, desc, parent) {
         let elem = this.createDescElem(topic,parent);
 
         elem.innerHTML = `<p>${desc}</p>`;
         parent.after(elem);
     }
+
+    /**
+     * @function renderTitle Displays h1 title based on the search query.
+     */
     renderTitle() {
         let searchName = window.location.search.replace('?find=','');
         searchName = searchName.replace('%2F','/');
@@ -63,6 +91,13 @@ export default class RulebookView {
         titleElem.innerText = titleName;
         titleElem.id = searchName;
     }
+
+    /**
+     * 
+     * @param {object} topic 
+     * @param {string} desc full data from query describing a topic 
+     * @param {element} parent The element for the topic to contain the description
+     */
     renderMonsterDesc(topic, desc, parent) {
         const descElem = this.createDescElem(topic,parent);
 
@@ -83,9 +118,14 @@ export default class RulebookView {
 
         parent.after(descElem);
         descElem.append(hitPointElem, armorClassElem, intElem, strElem, conElem, dexElem, wisElem);
-        
-        // console.log(desc)
     }
+
+    /**
+     * 
+     * @param {object} topic 
+     * @param {string} desc full data from query describing a topic 
+     * @param {element} parent The element for the topic to contain the description
+     */
     renderWeaponDesc(topic, desc, parent) {
         // console.log(desc.cost.quantity);
         const descElem = this.createDescElem(topic,parent);
@@ -99,6 +139,13 @@ export default class RulebookView {
         parent.after(descElem);
         descElem.append(rangeElem, diceElem, costElem);
     }
+
+    /**
+     * 
+     * @param {object} topic 
+     * @param {string} desc full data from query describing a topic 
+     * @param {element} parent The element for the topic to contain the description
+     */
     renderEquipmentDesc(topic, desc, parent) {
         const descElem = this.createDescElem(topic,parent);
         const costElem = document.createElement('div');
@@ -122,6 +169,13 @@ export default class RulebookView {
         parent.after(descElem);
         descElem.append(costElem);
     }
+
+    /**
+     * 
+     * @param {object} topic 
+     * @param {string} desc full data from query describing a topic 
+     * @param {element} parent The element for the topic to contain the description
+     */
     renderRaceDesc(topic, desc, parent) {
         const descElem = this.createDescElem(topic,parent);
         const ageElem = document.createElement('div');
@@ -132,6 +186,13 @@ export default class RulebookView {
         parent.after(descElem);
         descElem.append(ageElem, alignElem);
     }
+
+    /**
+     * 
+     * @param {object} topic 
+     * @param {string} desc full data from query describing a topic 
+     * @param {element} parent The element for the topic to contain the description
+     */
     renderClassDesc(topic, desc, parent) {
         const descElem = this.createDescElem(topic,parent);
         const proficienciesElem = document.createElement('div');

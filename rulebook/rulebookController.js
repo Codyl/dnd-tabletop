@@ -1,11 +1,17 @@
 import rulebookModel from './rulebookModel.js'
 import rulebookView from './rulebookView.js'
 
+/**
+ * @class RuleBookController gets input from user
+ */
 export default class rulebookController {
     constructor() {
         this.rulebookView = new rulebookView();
         this.rulebookModel = new rulebookModel();
-     }
+    }
+/**
+ * @function setRulebookLinks gets clicks on sections for the api information
+ */
     setRulebookLinks() {
         const allButtons = document.querySelectorAll('.infoButton');
         allButtons.forEach((b) => {
@@ -17,6 +23,9 @@ export default class rulebookController {
             });
         });
     }
+    /**
+     * @function setRuleLinks displays ruleView by requesting data when the item is clicked
+     */
     async setRuleLinks() {
         //Create the url string we want to fetch
         let searchName = window.location.search.replace('?find=','');
@@ -38,8 +47,6 @@ export default class rulebookController {
             // create the description for the topic div
             let descData = await this.rulebookModel.getList('https://www.dnd5eapi.co'+topicName);
             
-            // console.log('https://www.dnd5eapi.co'+topicName);
-            // console.log(document.getElementById(topic.index));
             //render description of each topic
             if(searchName =='rule-sections'){
             this.rulebookView.renderRuleDesc(topic, descData,document.getElementById(topic.index));}
@@ -48,7 +55,6 @@ export default class rulebookController {
             }
             else if(searchName == 'monsters')
             {
-                // console.log(descData);
                 this.rulebookView.renderMonsterDesc(topic, descData,document.getElementById(topic.index));
             }
             else if(searchName == 'equipment-categories/weapon') {

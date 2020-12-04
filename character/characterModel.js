@@ -1,3 +1,7 @@
+/**
+ * @class CharacterModel
+ * @summary Character object data to be used
+ */
 export default class CharacterModel {
     constructor() {
         //top of paper sheet
@@ -24,11 +28,20 @@ export default class CharacterModel {
         this.spells = {};
         
     }
+    /**
+     * @function saveCharacter
+     * @summary Saves the edited character to localStorage.
+     */
     saveCharacter(){
         localStorage.setItem('character-'+this.characterName,JSON.stringify(this));
         const retrievedObject = localStorage.getItem('character-'+this.characterName);
         console.log('retrievedObject: ', JSON.parse(localStorage.getItem('character-'+this.characterName)));
     }
+    /**
+     * @function setCharacter
+     * @param {object} dataObject
+     * @summary Sets form object data as the character object data 
+     */
     setCharacter(dataObject) {
         // console.log(dataObject);
         this.characterName = dataObject.name;
@@ -51,7 +64,13 @@ export default class CharacterModel {
         this.weapons;
         this.spells;
     }
+    /**
+     * @function getCharacter
+     * @param {string} characterName
+     * @summary Pull character from localStorage 
+     */
     getCharacter(characterName) {
         return localStorage.getItem('character-'+characterName);
     }
+    //get the data for the attacks and spells to choose from
 }

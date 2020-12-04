@@ -1,3 +1,4 @@
+//Not currently used, will be used to allow the user to add images for maps
 class mapSquare {
     constructor(x,y,w,h) {
         //x and y are for top left corner for the square
@@ -15,6 +16,7 @@ export default class MainScreenModel {
         this.xSquares = 24;
         this.ySquares = 12;
         this.squares = [this.xSquares][this.ySquares];
+        this.maps = [];
     }
     getCoordinate(x,y){
         let coordinate;
