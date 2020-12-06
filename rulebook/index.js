@@ -1,6 +1,7 @@
 import rulebookController from './rulebookController.js';
 /**
- * @summary Uses the MVC rule book to display the data.
+ * @summary Uses the MVC rule book to display the dynamic elements for ruleView.html and rulebook.html
+ * Controller: 
  */
 const rulebook = new rulebookController();
 let path = window.location.pathname;
@@ -9,7 +10,6 @@ if(path === '/rulebook/ruleView.html')
     rulebook.rulebookView.renderTitle();
     rulebook.setRuleLinks();
     document.getElementById('search').addEventListener('input',function() {
-        // console.log(document.getElementById('search').value);
         let content = document.getElementsByClassName('subCategory');
         for (let i = 0; i < content.length; i++) {
             if(!String(content[i].innerText).toLowerCase().startsWith(String(document.getElementById('search').value)))
