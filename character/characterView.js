@@ -21,8 +21,16 @@ export default class characterView {
             background: document.getElementById('background').value
         };
     }
-    setFormDataValue(){
-        const data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
+    /**
+     * 
+     * @param {bool} useLocalStorage 
+     */
+    setFormDataValue(useLocalStorage){
+        let data;
+        if(useLocalStorage)
+        data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
+        else
+        data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
         console.log(data);
         document.getElementById('name').value = data.characterName;
         document.getElementById('level').value = data.level;
@@ -39,9 +47,19 @@ export default class characterView {
         document.getElementById('wis').value = data.wis;
         document.getElementById('cha').value = data.cha;
     }
-    setFormDataText(){
-        console.log(window.location.search.replace('?',''));
-        const data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
+    /**
+     * 
+     * @param {bool} useLocalStorage 
+     */
+    setFormDataText(useLocalStorage){
+        let data;
+        if(useLocalStorage){
+            data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
+        }
+        else{
+            data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
+        }
+        
         document.getElementById('name').innerText = data.characterName;
         document.getElementById('level').innerText = data.level;
         document.getElementById('class').innerText = data.class;
