@@ -1,5 +1,6 @@
 import rulebookModel from './rulebookModel.js'
 import rulebookView from './rulebookView.js'
+import { getList } from '../utilities.js'
 
 /**
  * @class RuleBookController gets input from user
@@ -9,9 +10,10 @@ export default class rulebookController {
         this.rulebookView = new rulebookView();
         this.rulebookModel = new rulebookModel();
     }
-/**
- * @function setRulebookLinks gets clicks on sections for the api information
- */
+
+    /**
+     * @function setRulebookLinks gets clicks on sections for the api information
+     */
     setRulebookLinks() {
         const allButtons = document.querySelectorAll('.infoButton');
         allButtons.forEach((b) => {
@@ -33,8 +35,8 @@ export default class rulebookController {
         let newUrl = this.rulebookModel.baseUrl+searchName;
         let apiList, myList;
         //fetch the data from the api and assign it to apiList
-        if(!searchName.startsWith('..')) apiList = await this.rulebookModel.getList(newUrl);
-        else myList = await this.rulebookModel.getList(searchName);
+        if(!searchName.startsWith('..')) apiList = await getList(newUrl);
+        else myList = await getList(searchName);
 
         //Show each topic as a div on the rulebook page
         if(apiList)
@@ -45,7 +47,7 @@ export default class rulebookController {
             let topicName = topic.url;
             
             // create the description for the topic div
-            let descData = await this.rulebookModel.getList('https://www.dnd5eapi.co'+topicName);
+            let descData = await getList('https://www.dnd5eapi.co'+topicName);
             
             //render description of each topic
             if(searchName =='rule-sections'){

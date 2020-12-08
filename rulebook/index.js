@@ -5,6 +5,7 @@ import rulebookController from './rulebookController.js';
  */
 const rulebook = new rulebookController();
 let path = window.location.pathname;
+console.log(path)
 if(path === '/rulebook/ruleView.html')
 {
     rulebook.rulebookView.renderTitle();

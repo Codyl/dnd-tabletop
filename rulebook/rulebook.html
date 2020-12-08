@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>DnD5e Rulebook</title>
-    <script type='module' src="./index.js"></script>
-    <link rel="stylesheet" href="./rulebookStyle.css">
-</head>
-<body class="content">
-    <form id="myForm" action="./ruleView.html" method="get">
-        <div class="wrapper">
-            <div class="infoButton" id="basics" data-api="rule-sections">Basics</div>
-            <div class="infoButton" id="FAQ" data-json='../myJson/faq.json'>FAQ</div>
-            <div class="infoButton" id="weapons" data-api="equipment-categories/weapon">Weapons</div>
-            <div class="infoButton" id="spells" data-api="spells">Spells</div>
-            <div class="infoButton" id="DM-tips" data-json='../myJson/dm_tips.json'>DM Tips</div>
-            <div class="infoButton" id="equipment" data-api="equipment-categories/adventuring-gear">Equipment</div>
-            <div class="infoButton" id="monsters" data-api="monsters">Monsters</div>
-            <div class="infoButton" id="P-tips" data-json='../myJson/player_tips.json'>Player Tips</div>
-            <div class="infoButton" id="races" data-api="races">Races</div>
-            <div class="infoButton" id="classes" data-api="classes">Classes</div>
-            <div class="infoButton" id="house-rules" data-json='../myJson/house_rules.json'>House Rules</div>
-            <input type="hidden" name="find" id="finder">
-        </div>
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>DnD5e Rulebook</title>
+        <script type='module' src="./index.js"></script>
+        <link rel="stylesheet" href="./rulebookStyle.css">
+    </head>
+    <body class="content">
+        <form id="myForm" action="./ruleView.html" method="get">
+            <div class="wrapper">
+                <div class="infoButton" id="basics" data-api="rule-sections">Basics</div>
+                <div class="infoButton" id="FAQ" data-json='../myJson/faq.json'>FAQ</div>
+                <div class="infoButton" id="weapons" data-api="equipment-categories/weapon">Weapons</div>
+                <div class="infoButton" id="spells" data-api="spells">Spells</div>
+                <div class="infoButton" id="DM-tips" data-json='../myJson/dm_tips.json'>DM Tips</div>
+                <div class="infoButton" id="equipment" data-api="equipment-categories/adventuring-gear">Equipment</div>
+                <div class="infoButton" id="monsters" data-api="monsters">Monsters</div>
+                <div class="infoButton" id="P-tips" data-json='../myJson/player_tips.json'>Player Tips</div>
+                <div class="infoButton" id="races" data-api="races">Races</div>
+                <div class="infoButton" id="classes" data-api="classes">Classes</div>
+                <div class="infoButton" id="house-rules" data-json='../myJson/house_rules.json'>House Rules</div>
+                <input type="hidden" name="find" id="finder">
+            </div>
+        </form>
+    </body>
 </html>
