@@ -1,8 +1,8 @@
 /**
-   * @function getList
+   * @function requestData
    * @param {string} url The api url string to be parsed for data 
    */
- export function getList(url) {
+ export function requestData(url) {
     return fetch(url,{
       method: 'GET',
       headers: {
@@ -13,18 +13,15 @@
           if (!response.ok) {
             throw Error(response.statusText);
           } else {
-             return response.json();
+            return response.json();
           }
         })
         .then(data => {
-          //return data.results ? arr = data.results : arr = data.equipment; 
-            let arr;
             if(!response.ok) {
               throw new Error(`${data.statusText}: ${data.message}`);
             }
-            else
-            if(data.results) {arr = data.results;}
-            else if(data.equipment) {arr = data.equipment; }
+            else if(data.results) {const results = data.results;return results;}
+            else if(data.equipment) {const equipmentCategory = data.equipment; return equipmentCategory;}
             else if(data.desc) {arr = data.desc}
             else{ arr= data;}
             return arr;

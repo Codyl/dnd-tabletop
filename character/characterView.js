@@ -1,7 +1,5 @@
 export default class characterView {
-    constructor() {
-
-    }
+    constructor() {}
     getFormData() {
         return {
             name: document.getElementById('name').innerText,
@@ -21,10 +19,6 @@ export default class characterView {
             background: document.getElementById('background').value
         };
     }
-    /**
-     * 
-     * @param {bool} useLocalStorage 
-     */
     setFormDataValue(useLocalStorage){
         let data;
         if(useLocalStorage)
@@ -47,58 +41,52 @@ export default class characterView {
         document.getElementById('wis').value = data.wis;
         document.getElementById('cha').value = data.cha;
     }
-    /**
-     * 
-     * @param {bool} useLocalStorage 
-     */
     setFormDataText(useLocalStorage){
-        let data;
+        let myCharacter;
         if(useLocalStorage){
-            data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
+            myCharacter = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
         }
         else{
-            data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
+            myCharacter = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
         }
         
-        document.getElementById('name').innerText = data.characterName;
-        document.getElementById('level').innerText = data.level;
-        document.getElementById('class').innerText = data.class;
-        document.getElementById('race').innerText = data.race;
-        document.getElementById('alignment').innerText = data.alignment;
-        document.getElementById('exp').innerText = data.exp;
-        document.getElementById('armor').innerText = data.armor;
-        document.getElementById('speed').innerText = data.speed;
-        document.getElementById('str').innerText = data.str;
-        document.getElementById('dex').innerText = data.dex;
-        document.getElementById('con').innerText = data.con;
-        document.getElementById('int').innerText = data.int;
-        document.getElementById('wis').innerText = data.wis;
-        document.getElementById('cha').innerText = data.cha;
+        document.getElementById('name').innerText = myCharacter.characterName;
+        document.getElementById('level').innerText = myCharacter.level;
+        document.getElementById('class').innerText = myCharacter.class;
+        document.getElementById('race').innerText = myCharacter.race;
+        document.getElementById('alignment').innerText = myCharacter.alignment;
+        document.getElementById('exp').innerText = myCharacter.exp;
+        document.getElementById('armor').innerText = myCharacter.armor;
+        document.getElementById('speed').innerText = myCharacter.speed;
+        document.getElementById('str').innerText = myCharacter.str;
+        document.getElementById('dex').innerText = myCharacter.dex;
+        document.getElementById('con').innerText = myCharacter.con;
+        document.getElementById('int').innerText = myCharacter.int;
+        document.getElementById('wis').innerText = myCharacter.wis;
+        document.getElementById('cha').innerText = myCharacter.cha;
     }
-    //Used in characterSelect
-    showCharacter(characterName) {
+    renderCharacterToken(characterName) {
         const characterData = JSON.parse(localStorage.getItem(characterName));
-        const characterElem = document.createElement('div');
-        const editCharacterElem = document.createElement('button');
-        const selectCharacterElem = document.createElement('button');
-        editCharacterElem.innerText = 'Edit';
-        editCharacterElem.addEventListener('click',()=> {
+        const characterElement = document.createElement('div');
+        const editCharacterElement = document.createElement('button');
+        const selectCharacterElement = document.createElement('button');
+        editCharacterElement.innerText = 'Edit';
+        editCharacterElement.addEventListener('click',()=> {
             window.location.href=`./character.html?${characterName}`;
         }); 
-        selectCharacterElem.innerText = 'Use this character';
-        selectCharacterElem.addEventListener('click',()=> {
+        selectCharacterElement.innerText = 'Use this character';
+        selectCharacterElement.addEventListener('click',()=> {
             localStorage.setItem('currentCharacter',characterName);
             window.location.href=`../mainScreen/mainScreen.html?${characterName}`;
         }); 
-        characterElem.classList.add('characterSelectable');
-        characterElem.innerText = characterData.characterName;
-        characterElem.append(editCharacterElem,selectCharacterElem);
-        document.getElementById('selector').appendChild(characterElem);
+        characterElement.classList.add('characterSelectable');
+        characterElement.innerText = characterData.characterName;
+        characterElement.append(editCharacterElement,selectCharacterElement);
+        document.getElementById('selector').appendChild(characterElement);
     }
     showImage(parentId,imgFile) {
         const characterImageElem = document.createElement('img');
         characterImageElem.src = imgFile;
-        console.log('here')
         document.getElementById(parentId).appendChild(characterImageElem);
     }
     // function readURL(input) {//preview character image

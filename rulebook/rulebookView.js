@@ -1,106 +1,66 @@
-/**
- * @class RulebookView
- * @summary renders the elements for dynamic data.
- */
 export default class RulebookView {
     constructor(){
         this.allButtons = document.querySelectorAll('.infoButton');
     }
-    /**
-     * 
-     * @param {object} topic 
-     * @param {element} parent 
-     */
-    createDescElem(topic,parent) {
-        let elem = document.createElement('div');
-        elem.classList.add('hide','ruleInfo');
-         elem.id = topic.index+"-Desc";
-        parent.addEventListener('click', function() {
-            elem.classList.toggle('hide');
-        });
-        return elem;
-    }
-    /**
-     * 
-     * @param {object} topic 
-     * @param {element} parent 
-     */
-    renderTopic(topic, parent) {
-        let elem = document.createElement('div');
+    renderTopic(topic, parentElement) {
+        let element = document.createElement('div');
 
-        elem.textContent = topic.name;
-        elem.classList.add('subCategory');
-        elem.id = topic.index;
-        elem.setAttribute('data-api','/'+elem.id.toLowerCase());
-        parent.appendChild(elem);
+        element.textContent = topic.name;
+        element.classList.add('subCategory');
+        element.id = topic.index;
+        element.setAttribute('data-api','/'+element.id.toLowerCase());
+        parentElement.appendChild(element);
         return true;
     }
-    /**
-     * 
-     * @param {object} topic 
-     * @param {string} desc full data from query describing a topic 
-     * @param {element} parent The element for the topic to contain the description
-     */
-    renderRuleDesc(topic, desc, parent) {
-        let elem =this.createDescElem(topic,parent);
+    createDescriptionElement(topic,parentElement) {
+        let element = document.createElement('div');
+        element.classList.add('hide','ruleInfo');
+         element.id = topic.index+"-Desc";
+        parentElement.addEventListener('click', function() {
+            element.classList.toggle('hide');
+        });
+        return element;
+    }
+    renderRuleDescription(topic, description, parentElement) {
+        let element =this.createDescriptionElement(topic,parentElement);
 
-        let descSplit = desc.split('\n');
+        let descSplit = description.split('\n');
         for(let line in descSplit) {
-            let lineElem = document.createElement('div');
-            lineElem.innerText = descSplit[line];
-            if(lineElem.innerText.startsWith('####')){
-                lineElem.innerHTML = `<h4>${lineElem.innerText}</h4>`;
+            let lineElement = document.createElement('div');
+            lineElement.innerText = descSplit[line];
+            if(lineElement.innerText.startsWith('####')){
+                lineElement.innerHTML = `<h4>${lineElement.innerText}</h4>`;
             }
-            else if(lineElem.innerText.startsWith('###')){
-                lineElem.innerHTML = `<h3>${lineElem.innerText}</h3>`;
+            else if(lineElement.innerText.startsWith('###')){
+                lineElement.innerHTML = `<h3>${lineElement.innerText}</h3>`;
             }
-            else if(lineElem.innerText.startsWith('##')){
-                lineElem.innerHTML = `<h2>${lineElem.innerText}</h2>`;
+            else if(lineElement.innerText.startsWith('##')){
+                lineElement.innerHTML = `<h2>${lineElement.innerText}</h2>`;
             }
-            else if(lineElem.innerText.startsWith('##')){
-                lineElem.innerHTML = `<h1>${lineElem.innerText}</h1>`;
+            else if(lineElement.innerText.startsWith('##')){
+                lineElement.innerHTML = `<h1>${lineElement.innerText}</h1>`;
             }
-            elem.appendChild(lineElem);
+            element.appendChild(lineElement);
         }
-        parent.after(elem);
+        parentElement.after(element);
     }
-    /**
-     * 
-     * @param {object} topic 
-     * @param {string} desc full data from query describing a topic 
-     * @param {element} parent The element for the topic to contain the description
-     */
-    renderSpellDesc(topic, desc, parent) {
-        let elem = this.createDescElem(topic,parent);
-
-        elem.innerHTML = `<p>${desc}</p>`;
-        parent.after(elem);
+    renderSpellDesc(topic, description, parentElement) {
+        let element = this.createDescriptionElement(topic,parentElement);
+        element.innerHTML = `<p>${description}</p>`;
+        parentElement.after(element);
     }
-
-    /**
-     * @function renderTitle Displays h1 title based on the search query.
-     */
     renderTitle() {
-        let searchName = window.location.search.replace('?find=','');
-        searchName = searchName.replace('%2F','/');
-        let titleName;
-        //Get the title from the search
+        let searchName = window.location.search.replace('?find=','').replace('%2F','/');
         let title = searchName.replace('../myJson%2F','').replace('.json','').replace('_',' ').split('/');
+        let titleName;
         if(title[0] != 'equipment-categories' && title) titleName = title[0];
         else titleName = title[1];
-        let titleElem = document.getElementById('title');
-        titleElem.innerText = titleName;
-        titleElem.id = searchName;
+        let titleElement = document.getElementById('title');
+        titleElement.innerText = titleName;
+        titleElement.id = searchName;
     }
-
-    /**
-     * 
-     * @param {object} topic 
-     * @param {string} desc full data from query describing a topic 
-     * @param {element} parent The element for the topic to contain the description
-     */
-    renderMonsterDesc(topic, desc, parent) {
-        const descElem = this.createDescElem(topic,parent);
+    renderMonsterDesc(topic, description, parentElement) {
+        const descriptionElement = this.createDescriptionElement(topic,parentElement);
 
         const hitPointElem = document.createElement('div');
         const armorClassElem = document.createElement('div');
@@ -109,109 +69,121 @@ export default class RulebookView {
         const conElem = document.createElement('div');
         const dexElem = document.createElement('div');
         const wisElem = document.createElement('div');
-        hitPointElem.innerText = "Hit points: " + desc.hit_points;
-        armorClassElem.innerText = "Armor class: " + desc.armor_class;
-        intElem.innerText = "Int: " + desc.intelligence;
-        strElem.innerText = "Str: " + desc.strength;
-        conElem.innerText = "Con: " + desc.constitution;
-        dexElem.innerText = "Dex: " + desc.dexterity;
-        wisElem.innerText = "Wis: " + desc.wisdom;
+        hitPointElem.innerText = "Hit points: " + description.hit_points;
+        armorClassElem.innerText = "Armor class: " + description.armor_class;
+        intElem.innerText = "Int: " + description.intelligence;
+        strElem.innerText = "Str: " + description.strength;
+        conElem.innerText = "Con: " + description.constitution;
+        dexElem.innerText = "Dex: " + description.dexterity;
+        wisElem.innerText = "Wis: " + description.wisdom;
 
-        parent.after(descElem);
-        descElem.append(hitPointElem, armorClassElem, intElem, strElem, conElem, dexElem, wisElem);
+        parentElement.after(descriptionElement);
+        descriptionElement.append(hitPointElem, armorClassElem, intElem, strElem, conElem, dexElem, wisElem);
     }
-
-    /**
-     * 
-     * @param {object} topic 
-     * @param {string} desc full data from query describing a topic 
-     * @param {element} parent The element for the topic to contain the description
-     */
-    renderWeaponDesc(topic, desc, parent) {
-        // console.log(desc.cost.quantity);
-        const descElem = this.createDescElem(topic,parent);
+    renderWeaponDesc(topic, description, parentElement) {
+        // console.log(description.cost.quantity);
+        const descriptionElement = this.createDescriptionElement(topic,parentElement);
         const rangeElem = document.createElement('div');
         const diceElem = document.createElement('div');
         const costElem = document.createElement('div');
-        rangeElem.innerText = "Type: "+desc.category_range;
-        if(desc.damage != undefined) diceElem.innerText = "Dice: "+desc.damage.damage_dice;
-        if(desc.cost != undefined) costElem.innerText = `Cost: ${desc.cost.quantity} ${desc.cost.unit}`;
+        rangeElem.innerText = "Type: "+description.category_range;
+        if(description.damage != undefined) diceElem.innerText = "Dice: "+description.damage.damage_dice;
+        if(description.cost != undefined) costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;
 
-        parent.after(descElem);
-        descElem.append(rangeElem, diceElem, costElem);
+        parentElement.after(descriptionElement);
+        descriptionElement.append(rangeElem, diceElem, costElem);
     }
-
-    /**
-     * 
-     * @param {object} topic 
-     * @param {string} desc full data from query describing a topic 
-     * @param {element} parent The element for the topic to contain the description
-     */
-    renderEquipmentDesc(topic, desc, parent) {
-        const descElem = this.createDescElem(topic,parent);
+    renderEquipmentDesc(topic, description, parentElement) {
+        const descriptionElement = this.createDescriptionElement(topic,parentElement);
         const costElem = document.createElement('div');
-        if(desc.cost != undefined)
-        costElem.innerText = `Cost: ${desc.cost.quantity} ${desc.cost.unit}`;
-        if(desc[0]) descElem.innerText = desc[0];
-        if(desc.contents != undefined){
-            for(let i = 0; i < desc.contents.length; i++) {
+        if(description.cost != undefined)
+        costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;
+        if(description[0]) descriptionElement.innerText = description[0];
+        if(description.contents != undefined){
+            for(let i = 0; i < description.contents.length; i++) {
                 if(!i){
-                    descElem.innerText += "Contains these items: ";
+                    descriptionElement.innerText += "Contains these items: ";
                 }
-                else if(i < desc.contents.length -1) {
-                    descElem.innerText += desc.contents[i].item.name + ", ";
+                else if(i < description.contents.length -1) {
+                    descriptionElement.innerText += description.contents[i].item.name + ", ";
                 }
                 else {
-                    descElem.innerText += desc.contents[i].item.name;
+                    descriptionElement.innerText += description.contents[i].item.name;
                 }
             }
         }
 
-        parent.after(descElem);
-        descElem.append(costElem);
+        parentElement.after(descriptionElement);
+        descriptionElement.append(costElem);
     }
+    renderRaceDesc(topic, description, parentElement) {
+        const descriptionElement = this.createDescriptionElement(topic,parentElement);
+        const ageElement = document.createElement('div');
+        const alignmentElement = document.createElement('div');
+        ageElement.innerText = "Age: " + description.age;
+        alignmentElement.innerText = "Alignment: " + description.alignment;
 
-    /**
-     * 
-     * @param {object} topic 
-     * @param {string} desc full data from query describing a topic 
-     * @param {element} parent The element for the topic to contain the description
-     */
-    renderRaceDesc(topic, desc, parent) {
-        const descElem = this.createDescElem(topic,parent);
-        const ageElem = document.createElement('div');
-        const alignElem = document.createElement('div');
-        ageElem.innerText = "Age: " + desc.age;
-        alignElem.innerText = "Alignment: " + desc.alignment;
-
-        parent.after(descElem);
-        descElem.append(ageElem, alignElem);
+        parentElement.after(descriptionElement);
+        descriptionElement.append(ageElement, alignmentElement);
     }
-
-    /**
-     * 
-     * @param {object} topic 
-     * @param {string} desc full data from query describing a topic 
-     * @param {element} parent The element for the topic to contain the description
-     */
-    renderClassDesc(topic, desc, parent) {
-        const descElem = this.createDescElem(topic,parent);
+    renderClassDesc(topic, description, parentElement) {
+        const descriptionElement = this.createDescriptionElement(topic,parentElement);
         const proficienciesElem = document.createElement('div');
-        if(desc.proficiencies != undefined){
-            for(let i = 0; i < desc.proficiencies.length; i++) {
+        if(description.proficiencies != undefined){
+            for(let i = 0; i < description.proficiencies.length; i++) {
                 if(!i){
-                    proficienciesElem.innerText += "Is proficient with: "+desc.proficiencies[i].name +', ';
+                    proficienciesElem.innerText += "Is proficient with: "+description.proficiencies[i].name +', ';
                 }
-                else if(i < desc.proficiencies.length -1) {
-                    proficienciesElem.innerText += desc.proficiencies[i].name + ", ";
+                else if(i < description.proficiencies.length -1) {
+                    proficienciesElem.innerText += description.proficiencies[i].name + ", ";
                 }
                 else {
-                    proficienciesElem.innerText += desc.proficiencies[i].name;
+                    proficienciesElem.innerText += description.proficiencies[i].name;
                 }
             }
         }
         
-        parent.after(descElem);
-        descElem.append(proficienciesElem);
+        parentElement.after(descriptionElement);
+        descriptionElement.append(proficienciesElem);
+    }
+    renderTopicDescription(searchName, topic, descriptionForTopicDiv)
+    {
+        switch(searchName)
+        {
+            case 'rule-sections':
+                this.rulebookView.renderRuleDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+            case 'spells':
+                this.rulebookView.renderSpellDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+            case 'monsters':
+                this.rulebookView.renderMonsterDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+            case 'equipment-categories/weapon':
+                this.rulebookView.renderWeaponDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+            case 'equipment-categories/adventuring-gear':
+                this.rulebookView.renderEquipmentDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+            case 'races':
+                this.rulebookView.renderRaceDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+            case 'classes':
+                this.rulebookView.renderClassDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));
+            default:
+                console.log('Did not match an expected query');
+        }
+    }
+    isSearchMatch(content)
+    {
+        return bool(String(content).toLowerCase().startsWith(String(document.getElementById('search').value)));
+    }
+    makeRuleLinksHideable() {
+        document.getElementById('search').addEventListener('input',function() {
+            let contentElements = document.getElementsByClassName('subCategory');
+            for (let i = 0; i < contentElements.length; i++) {
+                if(isSearchMatch(contentElements[i].innerText)) contentElements[i].classList.remove('hide');
+                else contentElements[i].classList.add('hide');
+            }
+            if(document.getElementById('search').value == '') 
+            for (let i = 0; i < contentElements.length; i++) {
+                contentElements[i].classList.remove('hide');
+                contentElements[i].nextElementSibling.classList.add('hide');
+            }
+        });
     }
 };

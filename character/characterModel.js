@@ -1,10 +1,5 @@
-/**
- * @class CharacterModel
- * @summary Character object data to be used
- */
 export default class CharacterModel {
     constructor() {
-        //top of paper sheet
         this.characterName ='';
         this.characterImage = '';
         this.level = 1;
@@ -15,7 +10,6 @@ export default class CharacterModel {
         this.armor = 0;
         this.speed = 0;
 
-        //skills
         this.con = 0;
         this.int = 0;
         this.wis = 0;
@@ -26,24 +20,13 @@ export default class CharacterModel {
         this.background = '';
         this.weapons = {};
         this.spells = {};
-        
     }
-    /**
-     * @function saveCharacter
-     * @summary Saves the edited character to localStorage.
-     */
     saveCharacter(){
         localStorage.setItem('character-'+this.characterName,JSON.stringify(this));
         const retrievedObject = localStorage.getItem('character-'+this.characterName);
         console.log('retrievedObject: ', JSON.parse(localStorage.getItem('character-'+this.characterName)));
     }
-    /**
-     * @function setCharacter
-     * @param {object} dataObject
-     * @summary Sets form object data as the character object data 
-     */
     setCharacter(dataObject) {
-        // console.log(dataObject);
         this.characterName = dataObject.name;
         this.level = dataObject.level;
         this.exp = dataObject.exp;
@@ -64,11 +47,6 @@ export default class CharacterModel {
         this.weapons;
         this.spells;
     }
-    /**
-     * @function getCharacter
-     * @param {string} characterName
-     * @summary Pull character from localStorage 
-     */
     getCharacter(characterName) {
         return localStorage.getItem('character-'+characterName);
     }

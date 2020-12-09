@@ -17,9 +17,7 @@ export default class characterController {
     uploadImage() {
         const inputElement = document.getElementById("characterImage");
         inputElement.addEventListener("change", () => {
-            console.log(inputElement);
             const fileList = this.files; 
-            console.log(fileList);
             this.characterView.showImage("characterImage",fileList[i]);
         });
     }
