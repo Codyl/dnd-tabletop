@@ -39,8 +39,8 @@ export default class rulebookController {
         else if(myJsonObject)
         myJsonObject.forEach(topic => {
             this.rulebookView.renderTopic(topic,document.getElementById('content'));
-            this.rulebookView.renderSpellDesc(topic,topic.desc,document.getElementById(topic.index));
+            this.rulebookView.renderSpellDescription(topic,topic.desc,document.getElementById(topic.index));
         });
-        this.rulebookView.makeRuleLinksHideable();
+        this.rulebookView.makeRuleLinksHidable();
     }
   };
