@@ -9,7 +9,7 @@ var foundACharacter = false;
 for(let item in localStorage) {
     if(item.startsWith('character-'))
     {
-        myCharacterController.characterView.showCharacter(item);
+        myCharacterController.characterView.renderCharacterOption(item);
         foundACharacter = true;
     }
 }

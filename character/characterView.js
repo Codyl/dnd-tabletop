@@ -65,7 +65,7 @@ export default class characterView {
         document.getElementById('wis').innerText = myCharacter.wis;
         document.getElementById('cha').innerText = myCharacter.cha;
     }
-    renderCharacterToken(characterName) {
+    renderCharacterOption(characterName) {
         const characterData = JSON.parse(localStorage.getItem(characterName));
         const characterElement = document.createElement('div');
         const editCharacterElement = document.createElement('button');

@@ -24,7 +24,7 @@ export default class mainScreenView{
                         tileElement.appendChild(playerElement);
                         event.preventDefault();
                     });
-                gridElement.appendChild(tileElement);
+                this.gridElement.appendChild(tileElement);
             } 
         }
     }
