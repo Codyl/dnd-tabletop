@@ -24,7 +24,7 @@ export default class rulebookController {
         let searchName = window.location.search.replace('?find=','').replaceAll('%2F','/');
         let newUrl = this.rulebookModel.baseUrl+searchName;
         let apiObject, myJsonObject;
-
+        console.log(newUrl)
         if(!searchName.startsWith('..')) apiObject = await requestData(newUrl);
         else myJsonObject = await requestData(searchName);
 
@@ -41,6 +41,6 @@ export default class rulebookController {
             this.rulebookView.renderTopic(topic,document.getElementById('content'));
             this.rulebookView.renderSpellDesc(topic,topic.desc,document.getElementById(topic.index));
         });
-        this.rulebookView.makeRuleLinksHidable();
+        this.rulebookView.makeRuleLinksHideable();
     }
   };

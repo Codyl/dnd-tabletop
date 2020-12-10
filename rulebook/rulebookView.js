@@ -81,7 +81,6 @@ export default class RulebookView {
         descriptionElement.append(hitPointElem, armorClassElem, intElem, strElem, conElem, dexElem, wisElem);
     }
     renderWeaponDesc(topic, description, parentElement) {
-        // console.log(description.cost.quantity);
         const descriptionElement = this.createDescriptionElement(topic,parentElement);
         const rangeElem = document.createElement('div');
         const diceElem = document.createElement('div');
@@ -97,11 +96,11 @@ export default class RulebookView {
         const descriptionElement = this.createDescriptionElement(topic,parentElement);
         const costElem = document.createElement('div');
         if(description.cost != undefined)
-        costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;
-        if(description[0]) descriptionElement.innerText = description[0];
+        {costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;}
+        if(description[0]) {descriptionElement.innerText = description[0];}
         if(description.contents != undefined){
             for(let i = 0; i < description.contents.length; i++) {
-                if(!i){
+                if(!i) {
                     descriptionElement.innerText += "Contains these items: ";
                 }
                 else if(i < description.contents.length -1) {
@@ -176,7 +175,7 @@ export default class RulebookView {
         document.getElementById('search').addEventListener('input',function() {
             let contentElements = document.getElementsByClassName('subCategory');
             for (let i = 0; i < contentElements.length; i++) {
-                if(isSearchMatch(contentElements[i].innerText)) contentElements[i].classList.remove('hide');
+                if(isSearchMatch(contentElements[i].innerText)) {contentElements[i].classList.remove('hide');}
                 else contentElements[i].classList.add('hide');
             }
             if(document.getElementById('search').value == '') 

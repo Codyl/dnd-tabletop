@@ -23,8 +23,6 @@ export default class CharacterModel {
     }
     saveCharacter(){
         localStorage.setItem('character-'+this.characterName,JSON.stringify(this));
-        const retrievedObject = localStorage.getItem('character-'+this.characterName);
-        console.log('retrievedObject: ', JSON.parse(localStorage.getItem('character-'+this.characterName)));
     }
     setCharacter(dataObject) {
         this.characterName = dataObject.name;

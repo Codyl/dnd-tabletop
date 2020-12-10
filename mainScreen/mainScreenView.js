@@ -18,8 +18,8 @@ export default class mainScreenView{
                 //Event listeners for dragging player tokens into the div.
                 tileElement.addEventListener("dragover", function(event) {event.preventDefault();});
                 tileElement.addEventListener("drop", function(event) {
-                        var playerID = event.dataTransfer.getData("text/plain");
-                        var playerElement = document.getElementById(playerID);
+                        const playerID = event.dataTransfer.getData("text/plain");
+                        const playerElement = document.getElementById(playerID);
                         playerElement.parentNode.removeChild(playerElement);
                         tileElement.appendChild(playerElement);
                         event.preventDefault();
@@ -28,24 +28,15 @@ export default class mainScreenView{
             } 
         }
     }
-
-    /**
-     * @summary Initialize the character token information and display the element.
-     * @param {string} character The image for the character token.
-     * @param {int} initX Starting tile x position for the div gridElement.
-     * @param {int} initY Starting tile y position for the div gridElement.
-     */
-    initPlayer(character, initX, initY){
+    initPlayer(characterImageName, initX, initY){
         const playerElem = document.createElement('img');
-        playerElem.src = character;
+        playerElem.src = characterImageName;
         playerElem.classList.add('playerImg');
         playerElem.draggable = "true";
-        playerElem.id = character;
-        // const tiles = document.querySelectorAll(".tile");
+        playerElem.id = characterImageName;
         const playerTile = document.querySelectorAll("[data-tile-coord='"+`[${initX},${initY}]`+"']");
         playerElem.addEventListener('dragstart', function (event) {
              event.dataTransfer.setData("text/plain", this.id);
-            //  console.log(event.dataTransfer.getData("text/plain"));
              });
         playerTile[0].appendChild(playerElem);
     }
