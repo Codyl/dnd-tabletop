@@ -1,3 +1,4 @@
+import {requestData} from '../utilities.js';
 export default class CharacterModel {
     constructor() {
         this.characterName ='';
@@ -49,4 +50,9 @@ export default class CharacterModel {
         return localStorage.getItem('character-'+characterName);
     }
     //get the data for the attacks and spells to choose from
+    async getWeaponsForSelection() {
+        const weapons = await requestData('https://www.dnd5eapi.co/api/equipment-categories/weapon');
+        // console.log(weapons)
+        return weapons;
+}
 }

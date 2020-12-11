@@ -13,7 +13,4 @@ for(let item in localStorage) {
         foundACharacter = true;
     }
 }
-if(!foundACharacter) {
-    const noCharactersDiv = document.createElement('div');
-    noCharactersDiv.innerText = "You have no Character yet. Please add one in order to play the game."
-}
+myCharacterController.characterView.testForCurrentCharacter();

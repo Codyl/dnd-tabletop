@@ -1,8 +1,5 @@
-#Ignore the JSDocs
-out/
-
-#Ignore conf
-conf.json
-
 #ignore node modules
+node_modules/
 server/node_modules/
+server/package-lock.json
+server/package.json

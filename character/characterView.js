@@ -1,8 +1,9 @@
+import { requestData} from '../utilities.js';
 export default class characterView {
     constructor() {}
     getFormData() {
         return {
-            name: document.getElementById('name').innerText,
+            name: document.getElementById('name').value,
             level: document.getElementById('level').value,
             className: document.getElementById('class').value,
             race: document.getElementById('race').value,
@@ -25,7 +26,7 @@ export default class characterView {
         data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
         else
         data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
-        console.log(data);
+        console.log(data)
         document.getElementById('name').value = data.characterName;
         document.getElementById('level').value = data.level;
         document.getElementById('class').value = data.class;
@@ -84,10 +85,46 @@ export default class characterView {
         characterElement.append(editCharacterElement,selectCharacterElement);
         document.getElementById('selector').appendChild(characterElement);
     }
+    testForCurrentCharacter() {
+        if (localStorage.getItem('currentCharacter') != null) {
+            const returnElemParent = document.getElementById('returnToMainScreen');
+            const returnElem = document.createElement('a');
+            returnElem.href = '../mainScreen/mainScreen.html';
+            returnElem.innerText = 'Back to map screen'
+            returnElemParent.appendChild(returnElem);
+        }
+        else {
+            const noCharactersDiv = document.createElement('div');
+            noCharactersDiv.innerText = "You have no selected Character yet. Please add one in order to play the game.";
+            document.getElementById('error').appendChild(noCharactersDiv);
+        }
+    }
     showImage(parentId,imgFile) {
         const characterImageElem = document.createElement('img');
         characterImageElem.src = imgFile;
         document.getElementById(parentId).appendChild(characterImageElem);
+    }
+    renderProvidedImages(){
+            // //render image
+            // const fs = require('fs')
+            // const dir = '../img/'
+            // const files = fs.readdirSync(dir)
+            
+            // for (const file of files) {
+            //   console.log(file)
+            //   const imgElem = document.createElement('img');
+            //   imgElem.src = file;
+            //   document.getElementById('defaultImages').appendChild(imgElem);
+            // }
+        
+    }
+    renderWeaponDropDown(weapons) {
+        // console.log(weapons)
+        weapons.forEach(weapon => {
+            let option = document.createElement(option);
+            option.innerText = weapon.name;
+            document.getElementById("weaponDropDown").appendChild(option);
+        });
     }
     // function readURL(input) {//preview character image
     //     if (input.files && input.files[0]) {

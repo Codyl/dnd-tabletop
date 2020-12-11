@@ -1,9 +1,5 @@
 import characterView from './characterView.js';
 import characterModel from './characterModel.js';
-/**
- * @class characterController
- * @summary Process input for character pages
- */
 export default class characterController {
     constructor() {
         this.characterView = new characterView();
@@ -20,5 +16,8 @@ export default class characterController {
             const fileList = this.files; 
             this.characterView.showImage("characterImage",fileList[i]);
         });
+    }
+    generateWeaponsDropDown() {
+        this.characterView.renderWeaponDropDown(this.characterModel.getWeaponsForSelection());
     }
 }
