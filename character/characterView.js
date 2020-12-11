@@ -20,13 +20,16 @@ export default class characterView {
             background: document.getElementById('background').value
         };
     }
-    setFormDataValue(useLocalStorage){
+    setFormDataValue(dataSelectString){
         let data;
-        if(useLocalStorage)
-        data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
-        else
-        data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
-        console.log(data)
+        if(dataSelectString == "selected character data")
+        {
+            data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
+        }
+        else if(dataSelectString == "current character data")
+        {
+            data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
+        }
         document.getElementById('name').value = data.characterName;
         document.getElementById('level').value = data.level;
         document.getElementById('class').value = data.class;
@@ -42,13 +45,15 @@ export default class characterView {
         document.getElementById('wis').value = data.wis;
         document.getElementById('cha').value = data.cha;
     }
-    setFormDataText(useLocalStorage){
+    setFormDataText(dataSelectString){
         let myCharacter;
-        if(useLocalStorage){
-            myCharacter = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
-        }
-        else{
+        if(dataSelectString == "selected character data")
+        {
             myCharacter = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
+        }
+        else if(dataSelectString == "current character data")
+        {
+            myCharacter = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
         }
         
         document.getElementById('name').innerText = myCharacter.characterName;
