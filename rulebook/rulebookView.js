@@ -85,10 +85,27 @@ export default class RulebookView {
         const rangeElem = document.createElement('div');
         const diceElem = document.createElement('div');
         const costElem = document.createElement('div');
-        rangeElem.innerText = "Type: "+description.category_range;
-        if(description.damage != undefined) diceElem.innerText = "Dice: "+description.damage.damage_dice;
-        if(description.cost != undefined) costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;
-
+        if(description.category_range != undefined)
+        {
+            rangeElem.innerText = "Type: "+description.category_range;
+        }
+        else if(Array.isArray(description))
+        {
+            description.forEach(desc => {
+                const descElem = document.createElement('p');
+                descElem.innerText = desc;
+                descriptionElement.append(descElem);
+            });
+        }
+        if(description.damage != undefined) 
+        {
+            diceElem.innerText = "Dice: "+description.damage.damage_dice;
+        }
+        if(description.cost != undefined)
+        {
+            costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;
+        } 
+            
         parentElement.after(descriptionElement);
         descriptionElement.append(rangeElem, diceElem, costElem);
     }

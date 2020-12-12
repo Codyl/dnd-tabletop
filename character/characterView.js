@@ -1,4 +1,5 @@
 import { requestData} from '../utilities.js';
+import {fs} from 'fs';
 export default class characterView {
     constructor() {}
     getFormData() {
@@ -78,7 +79,7 @@ export default class characterView {
         const selectCharacterElement = document.createElement('button');
         editCharacterElement.innerText = 'Edit';
         editCharacterElement.addEventListener('click',()=> {
-            window.location.href=`./character.html?${characterName}`;
+            window.location.href=`./characterEdit.html?${characterName}`;
         }); 
         selectCharacterElement.innerText = 'Use this character';
         selectCharacterElement.addEventListener('click',()=> {
@@ -110,26 +111,46 @@ export default class characterView {
         document.getElementById(parentId).appendChild(characterImageElem);
     }
     renderProvidedImages(){
-            // //render image
-            // const fs = require('fs')
-            // const dir = '../img/'
-            // const files = fs.readdirSync(dir)
+            //render image
+
+            const dir = '../img/'
+            const files = fs.readdirSync(dir)
             
-            // for (const file of files) {
-            //   console.log(file)
-            //   const imgElem = document.createElement('img');
-            //   imgElem.src = file;
-            //   document.getElementById('defaultImages').appendChild(imgElem);
-            // }
+            for (const file of files) {
+              console.log(file)
+              const imgElem = document.createElement('img');
+              imgElem.src = file;
+              document.getElementById('defaultImages').appendChild(imgElem);
+            }
         
     }
     renderWeaponDropDown(weapons) {
-        // console.log(weapons)
         weapons.forEach(weapon => {
-            let option = document.createElement(option);
+            let option = document.createElement('option');
             option.innerText = weapon.name;
             document.getElementById("weaponDropDown").appendChild(option);
         });
+    }
+    renderSpellDropDown(spells) {
+        spells.forEach(spell => {
+            let option = document.createElement('option');
+            option.innerText = spell.name;
+            document.getElementById("spellDropDown").appendChild(option);
+        });
+    }
+    addSpell(spellData) {
+        const attackTableElem = document.getElementById('attackTableRows');
+        const rowElem = document.createElement('tr');
+        const nameDataElem = document.createElement('td');
+        const bonusDataElem = document.createElement('td');
+        const typeDataElem = document.createElement('td');
+        const rangeDataElem = document.createElement('td');
+        nameDataElem.innerText = spellData.name;
+        bonusDataElem.innerText = "+[]";
+        typeDataElem.innerText = spellData.damage.damage_type.name;
+        rangeDataElem.innerText = spellData.range;
+        rowElem.append(nameDataElem, bonusDataElem, typeDataElem, rangeDataElem);
+        attackTableElem.appendChild(rowElem);
     }
     // function readURL(input) {//preview character image
     //     if (input.files && input.files[0]) {

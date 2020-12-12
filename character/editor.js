@@ -10,5 +10,7 @@ if(window.location.search != "?newCharacter") {
     myCharacterController.characterView.setFormDataValue("current character data");
 
 }
-// myCharacterController.generateWeaponsDropDown();
+myCharacterController.generateWeaponsDropDown();
+myCharacterController.generateSpellsDropDown();
+// myCharacterController.spellAddClick();
 myCharacterController.characterView.renderProvidedImages();

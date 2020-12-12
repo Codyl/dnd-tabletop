@@ -79,7 +79,7 @@
             <div class='skill' id='wisDiv'>Wis: <input type="number" name="" id="wis"></div>
             <div class='skill' id='chaDiv'>Cha: <input type="number" name="" id="cha"></div>
         </div>
-        <div class='left section'>
+        <div class='left section' style="height: 200px;">
             <h2>Attacks</h2>
             <table>
                 <thead>
@@ -92,25 +92,27 @@
                     </tr>
                     <!-- For each weapon make a row -->
                 </thead>
+                <tbody id='attackTableRows'>
+
+                </tbody>
             </table>
         </div>
         <div class='right section'>
             <h2>Equipment</h2>
             <select name="" id="weaponDropDown">
-                <option value="">handaxe</option>
             </select>
-            <button>Add</button>
+            <button id="equipmentAdd">Add</button>
             <ul></ul>
         </div>
         <div class="right section">
             <h2>Spells</h2>
-            <select name="" id="">
-                <option value="">frost</option>
+            <select name="" id="spellDropDown">
             </select>
-            <button>Add</button>
+            <button id="spellAdd">Add</button>
         </div>
-        <div>
-            Background story: <textarea name="" id="background" cols="30" rows="10"></textarea>
+        <div class="">
+            <h2>Background story:</h2> 
+            <textarea name="" id="background" cols="30" rows="10"></textarea>
         </div>
     </form>
     <script type='module' src="./editor.js"></script>

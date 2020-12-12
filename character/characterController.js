@@ -17,7 +17,19 @@ export default class characterController {
             this.characterView.showImage("characterImage",fileList[i]);
         });
     }
-    generateWeaponsDropDown() {
-        this.characterView.renderWeaponDropDown(this.characterModel.getWeaponsForSelection());
+    async generateWeaponsDropDown() {
+        const weapons = await this.characterModel.getWeaponsForSelection();
+        this.characterView.renderWeaponDropDown(weapons);
+    }
+    async generateSpellsDropDown() {
+        const spells = await this.characterModel.getSpellsForSelection();
+        this.characterView.renderSpellDropDown(spells);
+    }
+    spellAddClick() {
+        document.getElementById('spellAdd').addEventListener('click', event => {
+            console.log(event.target)
+            // const spellData = await requestData('https://www.dnd5eapi.co/api/spells/'+event.target.id);
+            // this.characterView.addSpell();
+        });
     }
 }

@@ -1,4 +1,6 @@
- export function requestData(url) {
+//comment for testing in jest
+export
+function requestData(url) {
     return fetch(url)
     .then(function(response) {
       if (!response.ok) {

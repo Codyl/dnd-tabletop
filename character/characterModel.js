@@ -45,14 +45,19 @@ export default class CharacterModel {
         this.background = dataObject.background;
         this.weapons;
         this.spells;
+
+        this.health = 20;
     }
     getCharacter(characterName) {
         return localStorage.getItem('character-'+characterName);
     }
-    //get the data for the attacks and spells to choose from
+
     async getWeaponsForSelection() {
         const weapons = await requestData('https://www.dnd5eapi.co/api/equipment-categories/weapon');
-        // console.log(weapons)
         return weapons;
-}
+    }
+    async getSpellsForSelection() {
+        const spells = await requestData('https://www.dnd5eapi.co/api/spells');
+        return spells;
+    }
 }
