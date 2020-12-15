@@ -1,10 +1,11 @@
 import { requestData} from '../utilities.js';
-import {fs} from 'fs';
+// import {fs} from 'fs';
 export default class characterView {
     constructor() {}
     getFormData() {
         return {
             name: document.getElementById('name').value,
+            image: document.getElementById('characterImageSelect').files[0],
             level: document.getElementById('level').value,
             className: document.getElementById('class').value,
             race: document.getElementById('race').value,
@@ -105,10 +106,16 @@ export default class characterView {
             document.getElementById('error').appendChild(noCharactersDiv);
         }
     }
-    showImage(parentId,imgFile) {
-        const characterImageElem = document.createElement('img');
-        characterImageElem.src = imgFile;
-        document.getElementById(parentId).appendChild(characterImageElem);
+    showImage(imgElem,imgFile) {
+        const reader  = new FileReader();
+        reader.onloadend = function () {
+            imgElem.src = reader.result;
+        }
+        if (imgFile) {
+            reader.readAsDataURL(imgFile);
+        } else {
+            imgElem.src = "";
+        }
     }
     renderProvidedImages(){
             //render image

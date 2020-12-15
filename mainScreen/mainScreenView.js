@@ -3,7 +3,7 @@ export default class mainScreenView{
         this.gridElement = document.getElementById('grid');
     }
 
-    generateMap(xTiles,yTiles){
+    generateMap(xTiles,yTiles, imgSize){
         //css calc() only accepts integers so we must convert xTiles and yTiles by rounding up.
         xTiles = Math.ceil(xTiles);
         yTiles = Math.ceil(yTiles);

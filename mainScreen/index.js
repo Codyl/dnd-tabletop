@@ -5,7 +5,7 @@ import mainScreenController from './mainScreenController.js';
  */
 
 const controller = new mainScreenController();
-controller.mainScreenView.generateMap(24,12);
+controller.mainScreenView.generateMap(24,12, controller.mainScreenModel.getImageSize('../img/map1.jpg'));
 controller.mainScreenView.initPlayer("../img/dragonborn.png",4,1);
 const ws = new WebSocket('ws://localhost:5500');
 ws.addEventListener('open', () => {

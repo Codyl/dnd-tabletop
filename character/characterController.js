@@ -11,10 +11,9 @@ export default class characterController {
         window.location.href = './characterSelect.html';
     }
     uploadImage() {
-        const inputElement = document.getElementById("characterImage");
+        const inputElement = document.getElementById("characterImageSelect");
         inputElement.addEventListener("change", () => {
-            const fileList = this.files; 
-            this.characterView.showImage("characterImage",fileList[i]);
+            this.characterView.showImage(document.getElementById("characterImage"),inputElement.files[0]);
         });
     }
     async generateWeaponsDropDown() {

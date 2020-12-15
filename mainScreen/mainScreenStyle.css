@@ -48,19 +48,19 @@ a {
 }
 @keyframes myAnimation {
     0% {
-        background-position: 0px -680px;
+        background-position: 0px -800px;
     }
     100% {
-        background-position: 840px -680px;
+        background-position: 920px -800px;
     }
 }
 #dice {
     transform: scale(.5);
     width: 180px;
-    height: 160px;
+    height: 180px;
     background-image: url('../img/dice.png');
     margin: auto;
-    animation-duration: 1s;
+    animation-duration: .8s;
     animation-timing-function: steps(5, end);
     animation-name: myAnimation;
     animation-play-state: paused;

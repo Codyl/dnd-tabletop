@@ -6,17 +6,18 @@ export default class MainScreenModel {
         this.maps = [];
         this.content = "";
     }
-    // getImageSize(imageUrl) {
-    //     let dimension, image;
+    getImageSize(imageUrl) {
+        let dimension, image;
 
-    //     image = new Image();
-    //     image.src = imageUrl;
-    //     image.onload = function() {
-    //         dimension = {
-    //             width: image.naturalWidth,
-    //             height: image.naturalHeight
-    //         };
-    //     };
-    //     return dimension;
-    // }
+        image = new Image();
+        image.src = imageUrl;
+        image.onload = function() {
+            dimension = {
+                width: image.naturalWidth,
+                height: image.naturalHeight
+            };
+            console.log(dimension)
+        };
+        return dimension;
+    }
 }

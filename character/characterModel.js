@@ -2,7 +2,7 @@ import {requestData} from '../utilities.js';
 export default class CharacterModel {
     constructor() {
         this.characterName ='';
-        this.characterImage = '';
+        this.image = '';
         this.level = 1;
         this.exp = 0;
         this.class = '';
@@ -27,6 +27,7 @@ export default class CharacterModel {
     }
     setCharacter(dataObject) {
         this.characterName = dataObject.name;
+        this.image = dataObject.image;
         this.level = dataObject.level;
         this.exp = dataObject.exp;
         this.class = dataObject.className;
