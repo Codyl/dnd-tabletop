@@ -186,7 +186,7 @@ export default class RulebookView {
     }
     isSearchMatch(content)
     {
-        return bool(String(content).toLowerCase().startsWith(String(document.getElementById('search').value)));
+        return Boolean(String(content).toLowerCase().startsWith(document.getElementById('search').value));
     }
     makeRuleLinksHidable() {
         document.getElementById('search').addEventListener('input',function() {

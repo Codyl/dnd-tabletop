@@ -16,7 +16,6 @@ export default class MainScreenModel {
                 width: image.naturalWidth,
                 height: image.naturalHeight
             };
-            console.log(dimension)
         };
         return dimension;
     }

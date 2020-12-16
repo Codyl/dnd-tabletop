@@ -12,8 +12,14 @@ export default class characterController {
     }
     uploadImage() {
         const inputElement = document.getElementById("characterImageSelect");
+        if(localStorage.getItem(window.location.search.replace('?',''))) {
+            document.getElementById("characterImage").src = (JSON.parse(localStorage.getItem(window.location.search.replace('?',''))).image);
+        }
+        else if(localStorage.getItem('currentCharacter')) {
+            document.getElementById("characterImage").src = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter'))).image;
+        } 
         inputElement.addEventListener("change", () => {
-            this.characterView.showImage(document.getElementById("characterImage"),inputElement.files[0]);
+            this.characterView.showFileAsImage(document.getElementById("characterImage"),inputElement.files[0]);
         });
     }
     async generateWeaponsDropDown() {
@@ -30,5 +36,14 @@ export default class characterController {
             // const spellData = await requestData('https://www.dnd5eapi.co/api/spells/'+event.target.id);
             // this.characterView.addSpell();
         });
+    }
+    imageChangeOnClick() {
+        const defaultImages = document.getElementsByClassName('defaultImage');
+        for(const img of defaultImages) {
+            img.addEventListener("click", () => {
+                console.log(img)
+                this.characterView.showDefaultImage(document.getElementById("characterImage"),img.src);
+            });
+        }
     }
 }

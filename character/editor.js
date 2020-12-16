@@ -12,5 +12,5 @@ if(window.location.search != "?newCharacter") {
 }
 myCharacterController.generateWeaponsDropDown();
 myCharacterController.generateSpellsDropDown();
+myCharacterController.imageChangeOnClick();
 // myCharacterController.spellAddClick();
-// myCharacterController.characterView.renderProvidedImages();

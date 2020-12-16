@@ -21,6 +21,9 @@ export default class CharacterModel {
         this.background = '';
         this.weapons = {};
         this.spells = {};
+
+        this.positionX = 5;
+        this.positionY = 5;
     }
     saveCharacter(){
         localStorage.setItem('character-'+this.characterName,JSON.stringify(this));
@@ -51,6 +54,9 @@ export default class CharacterModel {
     }
     getCharacter(characterName) {
         return localStorage.getItem('character-'+characterName);
+    }
+    getCharacterData(characterName) {
+        return localStorage.getItem(localStorage.getItem('character-'+characterName));
     }
 
     async getWeaponsForSelection() {

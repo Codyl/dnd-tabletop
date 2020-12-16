@@ -5,7 +5,7 @@ export default class characterView {
     getFormData() {
         return {
             name: document.getElementById('name').value,
-            image: document.getElementById('characterImageSelect').files[0],
+            image: document.getElementById("characterImage").src,
             level: document.getElementById('level').value,
             className: document.getElementById('class').value,
             race: document.getElementById('race').value,
@@ -106,7 +106,7 @@ export default class characterView {
             document.getElementById('error').appendChild(noCharactersDiv);
         }
     }
-    showImage(imgElem,imgFile) {
+    showFileAsImage(imgElem,imgFile) {
         const reader  = new FileReader();
         reader.onloadend = function () {
             imgElem.src = reader.result;
@@ -117,19 +117,8 @@ export default class characterView {
             imgElem.src = "";
         }
     }
-    renderProvidedImages(){
-            //render image
-
-            const dir = '../img/'
-            const files = fs.readdirSync(dir)
-            
-            for (const file of files) {
-              console.log(file)
-              const imgElem = document.createElement('img');
-              imgElem.src = file;
-              document.getElementById('defaultImages').appendChild(imgElem);
-            }
-        
+    showDefaultImage(imgElem, defaultImgSrc) {
+        imgElem.src = defaultImgSrc;
     }
     renderWeaponDropDown(weapons) {
         weapons.forEach(weapon => {

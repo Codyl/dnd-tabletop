@@ -23,18 +23,26 @@ export default class mainScreenView{
                         playerElement.parentNode.removeChild(playerElement);
                         tileElement.appendChild(playerElement);
                         event.preventDefault();
+                        const characterData = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')))
+                        characterData.positionX = `${x}`;
+                        characterData.positionY = `${y}`;
+                        localStorage.setItem(localStorage.getItem('currentCharacter'),JSON.stringify(characterData));
                     });
                 this.gridElement.appendChild(tileElement);
             } 
         }
     }
-    initPlayer(characterImageName, initX, initY){
+    initPlayer(character, initX, initY){
         const playerElem = document.createElement('img');
-        playerElem.src = characterImageName;
+        playerElem.src = character.image;
         playerElem.classList.add('playerImg');
         playerElem.draggable = "true";
-        playerElem.id = characterImageName;
-        const playerTile = document.querySelectorAll("[data-tile-coord='"+`[${initX},${initY}]`+"']");
+        playerElem.id = character.name;
+        let playerTile;
+        if(character.positionX)
+        playerTile = document.querySelectorAll("[data-tile-coord='"+`[${character.positionX},${character.positionY}]`+"']");
+        else
+        playerTile = document.querySelectorAll("[data-tile-coord='"+`[${initX},${initY}]`+"']");
         playerElem.addEventListener('dragstart', function (event) {
              event.dataTransfer.setData("text/plain", this.id);
              });

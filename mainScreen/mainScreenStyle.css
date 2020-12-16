@@ -23,8 +23,10 @@ html, body {
 }
 .playerImg {
     width: 40px;
+    height: 40px;
     border-radius: 100%;
     border: 3px solid lightgreen;
+    cursor:grab;
 }
 #interactive, #players {
     position: absolute;
