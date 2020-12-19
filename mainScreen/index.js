@@ -6,12 +6,16 @@ import mainScreenController from './mainScreenController.js';
 
 const controller = new mainScreenController();
 controller.mainScreenView.generateMap(24,12, controller.mainScreenModel.getImageSize('../img/map1.jpg'));
-controller.mainScreenView.initPlayer(JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter'))));
+const playerData = localStorage.getItem(localStorage.getItem('currentCharacter'));
+
 
 const ws = new WebSocket('ws://localhost:5500');
 ws.addEventListener('open', () => {
     console.log('We are connected!');
-    ws.send('What is up?!')
+    ws.send(playerData)
+});
+ws.addEventListener('message', ({ data }) => {
+    controller.mainScreenView.initPlayer(JSON.parse(playerData));
 });
 
 

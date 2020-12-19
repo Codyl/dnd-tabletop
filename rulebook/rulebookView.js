@@ -184,15 +184,18 @@ export default class RulebookView {
                 console.log('Did not match an expected query');
         }
     }
-    isSearchMatch(content)
-    {
-        return Boolean(String(content).toLowerCase().startsWith(document.getElementById('search').value));
-    }
+    // isSearchMatch(content)
+    // {
+    //     return Boolean(String(content).toLowerCase().startsWith(document.getElementById('search').value));
+    // }
     makeRuleLinksHidable() {
         document.getElementById('search').addEventListener('input',function() {
             let contentElements = document.getElementsByClassName('subCategory');
             for (let i = 0; i < contentElements.length; i++) {
-                if(isSearchMatch(contentElements[i].innerText)) {contentElements[i].classList.remove('hide');}
+                if(Boolean(String(contentElements[i].innerText).toLowerCase().startsWith(document.getElementById('search').value))
+                    ) {
+                    contentElements[i].classList.remove('hide');
+                }
                 else contentElements[i].classList.add('hide');
             }
             if(document.getElementById('search').value == '') 

@@ -1,8 +1,8 @@
-//Not currently used, will be used to allow the user to add images for maps
+import CharacterModel from "../character/characterModel.js";
 export default class MainScreenModel {
     constructor() {
         this.startingTile = {x:5, y:5};
-        this.characterTokens = [];
+        this.characters = [];
         this.maps = [];
         this.content = "";
     }
@@ -18,5 +18,10 @@ export default class MainScreenModel {
             };
         };
         return dimension;
+    }
+    addPlayer(data) {
+        let character = new CharacterModel;
+        character.setCharacter(data);
+        this.characters.push(character);
     }
 }
