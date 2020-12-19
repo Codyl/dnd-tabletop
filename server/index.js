@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-
+let players = [];
 const wss = new WebSocket.Server({ port:5500 });
 
 wss.on('connection', ws => {
