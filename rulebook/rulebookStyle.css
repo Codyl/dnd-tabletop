@@ -28,6 +28,12 @@
     text-align: center;
     font-size: x-large;
     box-sizing: border-box;
+    transition-property: filter;
+    transition-duration: 1s;
+    filter: contrast(80%);
+}
+.infoButton:hover {
+    filter: contrast(185%);
 }
 .infoButton:active {
     background-color: black;
@@ -38,6 +44,12 @@
     margin: 5px;
     cursor: pointer;
     padding: 5px 0;
+    transition-property: transform, background-color;
+    transition-duration: 0.5s;
+}
+.subCategory:hover {
+    background-color: red;
+    transform: scale(1.01, 1.25);
 }
 .hide {
     display: none;

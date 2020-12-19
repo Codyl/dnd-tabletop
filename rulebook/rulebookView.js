@@ -44,7 +44,7 @@ export default class RulebookView {
         }
         parentElement.after(element);
     }
-    renderSpellDesc(topic, description, parentElement) {
+    renderSpellDescription(topic, description, parentElement) {
         let element = this.createDescriptionElement(topic,parentElement);
         element.innerHTML = `<p>${description}</p>`;
         parentElement.after(element);
@@ -59,7 +59,7 @@ export default class RulebookView {
         titleElement.innerText = titleName;
         titleElement.id = searchName;
     }
-    renderMonsterDesc(topic, description, parentElement) {
+    renderMonsterDescription(topic, description, parentElement) {
         const descriptionElement = this.createDescriptionElement(topic,parentElement);
 
         const hitPointElem = document.createElement('div');
@@ -80,28 +80,44 @@ export default class RulebookView {
         parentElement.after(descriptionElement);
         descriptionElement.append(hitPointElem, armorClassElem, intElem, strElem, conElem, dexElem, wisElem);
     }
-    renderWeaponDesc(topic, description, parentElement) {
-        // console.log(description.cost.quantity);
+    renderWeaponDescription(topic, description, parentElement) {
         const descriptionElement = this.createDescriptionElement(topic,parentElement);
         const rangeElem = document.createElement('div');
         const diceElem = document.createElement('div');
         const costElem = document.createElement('div');
-        rangeElem.innerText = "Type: "+description.category_range;
-        if(description.damage != undefined) diceElem.innerText = "Dice: "+description.damage.damage_dice;
-        if(description.cost != undefined) costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;
-
+        if(description.category_range != undefined)
+        {
+            rangeElem.innerText = "Type: "+description.category_range;
+        }
+        else if(Array.isArray(description))
+        {
+            description.forEach(desc => {
+                const descElem = document.createElement('p');
+                descElem.innerText = desc;
+                descriptionElement.append(descElem);
+            });
+        }
+        if(description.damage != undefined) 
+        {
+            diceElem.innerText = "Dice: "+description.damage.damage_dice;
+        }
+        if(description.cost != undefined)
+        {
+            costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;
+        } 
+            
         parentElement.after(descriptionElement);
         descriptionElement.append(rangeElem, diceElem, costElem);
     }
-    renderEquipmentDesc(topic, description, parentElement) {
+    renderEquipmentDescription(topic, description, parentElement) {
         const descriptionElement = this.createDescriptionElement(topic,parentElement);
         const costElem = document.createElement('div');
         if(description.cost != undefined)
-        costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;
-        if(description[0]) descriptionElement.innerText = description[0];
+        {costElem.innerText = `Cost: ${description.cost.quantity} ${description.cost.unit}`;}
+        if(description[0]) {descriptionElement.innerText = description[0];}
         if(description.contents != undefined){
             for(let i = 0; i < description.contents.length; i++) {
-                if(!i){
+                if(!i) {
                     descriptionElement.innerText += "Contains these items: ";
                 }
                 else if(i < description.contents.length -1) {
@@ -116,7 +132,7 @@ export default class RulebookView {
         parentElement.after(descriptionElement);
         descriptionElement.append(costElem);
     }
-    renderRaceDesc(topic, description, parentElement) {
+    renderRaceDescription(topic, description, parentElement) {
         const descriptionElement = this.createDescriptionElement(topic,parentElement);
         const ageElement = document.createElement('div');
         const alignmentElement = document.createElement('div');
@@ -126,7 +142,7 @@ export default class RulebookView {
         parentElement.after(descriptionElement);
         descriptionElement.append(ageElement, alignmentElement);
     }
-    renderClassDesc(topic, description, parentElement) {
+    renderClassDescription(topic, description, parentElement) {
         const descriptionElement = this.createDescriptionElement(topic,parentElement);
         const proficienciesElem = document.createElement('div');
         if(description.proficiencies != undefined){
@@ -151,32 +167,35 @@ export default class RulebookView {
         switch(searchName)
         {
             case 'rule-sections':
-                this.rulebookView.renderRuleDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+                this.renderRuleDescription(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
             case 'spells':
-                this.rulebookView.renderSpellDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+                this.renderSpellDescription(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
             case 'monsters':
-                this.rulebookView.renderMonsterDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+                this.renderMonsterDescription(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
             case 'equipment-categories/weapon':
-                this.rulebookView.renderWeaponDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+                this.renderWeaponDescription(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
             case 'equipment-categories/adventuring-gear':
-                this.rulebookView.renderEquipmentDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+                this.renderEquipmentDescription(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
             case 'races':
-                this.rulebookView.renderRaceDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
+                this.renderRaceDescription(topic, descriptionForTopicDiv,document.getElementById(topic.index));break;
             case 'classes':
-                this.rulebookView.renderClassDesc(topic, descriptionForTopicDiv,document.getElementById(topic.index));
+                this.renderClassDescription(topic, descriptionForTopicDiv,document.getElementById(topic.index));
             default:
                 console.log('Did not match an expected query');
         }
     }
-    isSearchMatch(content)
-    {
-        return bool(String(content).toLowerCase().startsWith(String(document.getElementById('search').value)));
-    }
-    makeRuleLinksHideable() {
+    // isSearchMatch(content)
+    // {
+    //     return Boolean(String(content).toLowerCase().startsWith(document.getElementById('search').value));
+    // }
+    makeRuleLinksHidable() {
         document.getElementById('search').addEventListener('input',function() {
             let contentElements = document.getElementsByClassName('subCategory');
             for (let i = 0; i < contentElements.length; i++) {
-                if(isSearchMatch(contentElements[i].innerText)) contentElements[i].classList.remove('hide');
+                if(Boolean(String(contentElements[i].innerText).toLowerCase().startsWith(document.getElementById('search').value))
+                    ) {
+                    contentElements[i].classList.remove('hide');
+                }
                 else contentElements[i].classList.add('hide');
             }
             if(document.getElementById('search').value == '') 

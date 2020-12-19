@@ -1,7 +1,8 @@
+import {requestData} from '../utilities.js';
 export default class CharacterModel {
     constructor() {
         this.characterName ='';
-        this.characterImage = '';
+        this.image = '';
         this.level = 1;
         this.exp = 0;
         this.class = '';
@@ -20,14 +21,16 @@ export default class CharacterModel {
         this.background = '';
         this.weapons = {};
         this.spells = {};
+
+        this.positionX = 5;
+        this.positionY = 5;
     }
     saveCharacter(){
         localStorage.setItem('character-'+this.characterName,JSON.stringify(this));
-        const retrievedObject = localStorage.getItem('character-'+this.characterName);
-        console.log('retrievedObject: ', JSON.parse(localStorage.getItem('character-'+this.characterName)));
     }
     setCharacter(dataObject) {
         this.characterName = dataObject.name;
+        this.image = dataObject.image;
         this.level = dataObject.level;
         this.exp = dataObject.exp;
         this.class = dataObject.className;
@@ -46,9 +49,22 @@ export default class CharacterModel {
         this.background = dataObject.background;
         this.weapons;
         this.spells;
+
+        this.health = 20;
     }
     getCharacter(characterName) {
         return localStorage.getItem('character-'+characterName);
     }
-    //get the data for the attacks and spells to choose from
+    getCharacterData(characterName) {
+        return localStorage.getItem(localStorage.getItem('character-'+characterName));
+    }
+
+    async getWeaponsForSelection() {
+        const weapons = await requestData('https://www.dnd5eapi.co/api/equipment-categories/weapon');
+        return weapons;
+    }
+    async getSpellsForSelection() {
+        const spells = await requestData('https://www.dnd5eapi.co/api/spells');
+        return spells;
+    }
 }

@@ -1,8 +1,11 @@
+import { requestData} from '../utilities.js';
+// import {fs} from 'fs';
 export default class characterView {
     constructor() {}
     getFormData() {
         return {
-            name: document.getElementById('name').innerText,
+            name: document.getElementById('name').value,
+            image: document.getElementById("characterImage").src,
             level: document.getElementById('level').value,
             className: document.getElementById('class').value,
             race: document.getElementById('race').value,
@@ -19,13 +22,16 @@ export default class characterView {
             background: document.getElementById('background').value
         };
     }
-    setFormDataValue(useLocalStorage){
+    setFormDataValue(dataSelectString){
         let data;
-        if(useLocalStorage)
-        data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
-        else
-        data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
-        console.log(data);
+        if(dataSelectString == "selected character data")
+        {
+            data = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
+        }
+        else if(dataSelectString == "current character data")
+        {
+            data = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
+        }
         document.getElementById('name').value = data.characterName;
         document.getElementById('level').value = data.level;
         document.getElementById('class').value = data.class;
@@ -41,13 +47,15 @@ export default class characterView {
         document.getElementById('wis').value = data.wis;
         document.getElementById('cha').value = data.cha;
     }
-    setFormDataText(useLocalStorage){
+    setFormDataText(dataSelectString){
         let myCharacter;
-        if(useLocalStorage){
-            myCharacter = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
-        }
-        else{
+        if(dataSelectString == "selected character data")
+        {
             myCharacter = JSON.parse(localStorage.getItem(window.location.search.replace('?','')));
+        }
+        else if(dataSelectString == "current character data")
+        {
+            myCharacter = JSON.parse(localStorage.getItem(localStorage.getItem('currentCharacter')));
         }
         
         document.getElementById('name').innerText = myCharacter.characterName;
@@ -65,14 +73,14 @@ export default class characterView {
         document.getElementById('wis').innerText = myCharacter.wis;
         document.getElementById('cha').innerText = myCharacter.cha;
     }
-    renderCharacterToken(characterName) {
+    renderCharacterOption(characterName) {
         const characterData = JSON.parse(localStorage.getItem(characterName));
         const characterElement = document.createElement('div');
         const editCharacterElement = document.createElement('button');
         const selectCharacterElement = document.createElement('button');
         editCharacterElement.innerText = 'Edit';
         editCharacterElement.addEventListener('click',()=> {
-            window.location.href=`./character.html?${characterName}`;
+            window.location.href=`./characterEdit.html?${characterName}`;
         }); 
         selectCharacterElement.innerText = 'Use this character';
         selectCharacterElement.addEventListener('click',()=> {
@@ -84,10 +92,61 @@ export default class characterView {
         characterElement.append(editCharacterElement,selectCharacterElement);
         document.getElementById('selector').appendChild(characterElement);
     }
-    showImage(parentId,imgFile) {
-        const characterImageElem = document.createElement('img');
-        characterImageElem.src = imgFile;
-        document.getElementById(parentId).appendChild(characterImageElem);
+    testForCurrentCharacter() {
+        if (localStorage.getItem('currentCharacter') != null) {
+            const returnElemParent = document.getElementById('returnToMainScreen');
+            const returnElem = document.createElement('a');
+            returnElem.href = '../mainScreen/mainScreen.html';
+            returnElem.innerText = 'Back to map screen'
+            returnElemParent.appendChild(returnElem);
+        }
+        else {
+            const noCharactersDiv = document.createElement('div');
+            noCharactersDiv.innerText = "You have no selected Character yet. Please add one in order to play the game.";
+            document.getElementById('error').appendChild(noCharactersDiv);
+        }
+    }
+    showFileAsImage(imgElem,imgFile) {
+        const reader  = new FileReader();
+        reader.onloadend = function () {
+            imgElem.src = reader.result;
+        }
+        if (imgFile) {
+            reader.readAsDataURL(imgFile);
+        } else {
+            imgElem.src = "";
+        }
+    }
+    showDefaultImage(imgElem, defaultImgSrc) {
+        imgElem.src = defaultImgSrc;
+    }
+    renderWeaponDropDown(weapons) {
+        weapons.forEach(weapon => {
+            let option = document.createElement('option');
+            option.innerText = weapon.name;
+            document.getElementById("weaponDropDown").appendChild(option);
+        });
+    }
+    renderSpellDropDown(spells) {
+        spells.forEach(spell => {
+            let option = document.createElement('option');
+            option.innerText = spell.name;
+            document.getElementById("spellDropDown").appendChild(option);
+        });
+    }
+    addSpell(spellData) {
+        const attackTableElem = document.getElementById('attackTableRows');
+        const rowElem = document.createElement('tr');
+        const nameDataElem = document.createElement('td');
+        const bonusDataElem = document.createElement('td');
+        const typeDataElem = document.createElement('td');
+        const rangeDataElem = document.createElement('td');
+        nameDataElem.innerText = spellData.name;
+        bonusDataElem.innerText = "+[]";
+        typeDataElem.innerText = spellData.damage.damage_type.name;
+        rangeDataElem.innerText = spellData.range;
+        rowElem.append(nameDataElem, bonusDataElem, typeDataElem, rangeDataElem);
+        attackTableElem.appendChild(rowElem);
     }
     // function readURL(input) {//preview character image
     //     if (input.files && input.files[0]) {

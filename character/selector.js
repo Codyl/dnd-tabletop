@@ -9,11 +9,8 @@ var foundACharacter = false;
 for(let item in localStorage) {
     if(item.startsWith('character-'))
     {
-        myCharacterController.characterView.showCharacter(item);
+        myCharacterController.characterView.renderCharacterOption(item);
         foundACharacter = true;
     }
 }
-if(!foundACharacter) {
-    const noCharactersDiv = document.createElement('div');
-    noCharactersDiv.innerText = "You have no Character yet. Please add one in order to play the game."
-}
+myCharacterController.characterView.testForCurrentCharacter();
